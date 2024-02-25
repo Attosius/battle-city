@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -7771,8 +7771,8 @@ TextureImporter:
       all-tanks-sprite_294: -1223125228
       all-tanks-sprite_149: -1300466927
       all-tanks-sprite_329: 389949846
-      all-tanks-sprite_349: -1722552747
       all-tanks-sprite_392: 530782833
+      all-tanks-sprite_349: -1722552747
       all-tanks-sprite_247: -1655873546
       all-tanks-sprite_260: -1700955306
       all-tanks-sprite_97: -452540777
@@ -7804,9 +7804,9 @@ TextureImporter:
       all-tanks-sprite_40: 1396446312
       all-tanks-sprite_17: -142087512
       all-tanks-sprite_37: 1639331515
-      all-tanks-sprite_302: 1945933930
       all-tanks-sprite_353: -982371100
       all-tanks-sprite_84: -1910874792
+      all-tanks-sprite_302: 1945933930
       all-tanks-sprite_289: 1973244555
       all-tanks-sprite_67: 791268174
       all-tanks-sprite_306: 1730081749
@@ -7947,9 +7947,9 @@ TextureImporter:
       all-tanks-sprite_371: -323224786
       all-tanks-sprite_163: -1723103659
       all-tanks-sprite_148: 54735851
+      all-tanks-sprite_313: -1303143433
       all-tanks-sprite_0: 99785051
       all-tanks-sprite_195: -669364518
-      all-tanks-sprite_313: -1303143433
       all-tanks-sprite_171: 1671601440
       all-tanks-sprite_126: -649618236
       all-tanks-sprite_185: 473155884
@@ -7995,10 +7995,10 @@ TextureImporter:
       all-tanks-sprite_100: 1278512920
       all-tanks-sprite_348: -264968993
       all-tanks-sprite_52: 645799608
-      all-tanks-sprite_56: 1994792127
       all-tanks-sprite_145: 26618379
-      all-tanks-sprite_287: 2022051926
       all-tanks-sprite_375: -505490615
+      all-tanks-sprite_56: 1994792127
+      all-tanks-sprite_287: 2022051926
       all-tanks-sprite_72: -1965259347
       all-tanks-sprite_175: 2085167211
       all-tanks-sprite_209: 2145302555

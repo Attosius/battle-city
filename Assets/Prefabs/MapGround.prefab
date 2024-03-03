@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7611780669778283918}
   - component: {fileID: 6549297502988112479}
   m_Layer: 0
-  m_Name: Ground
+  m_Name: MapGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6549297502988112479
 SpriteRenderer:
@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1566080667
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 850573229, guid: 7216c43ef976b0948bb1009d6b1f4b08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

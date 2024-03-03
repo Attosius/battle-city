@@ -14,7 +14,7 @@ public class GameBoardManager : MonoBehaviour
             {
                 var position = new Vector3(i, j, 0);
                 //GUI.Label(new Rect(position, new Vector2(20, 20)), position.ToString());
-                Debug.Log(position);
+                //Debug.Log(position);
                 //Gizmos.
                 Instantiate(groundPf, position, Quaternion.identity);
             }

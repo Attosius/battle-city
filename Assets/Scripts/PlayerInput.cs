@@ -51,8 +51,12 @@ public class PlayerInput : MonoBehaviour
 
         var x = (int)Input.GetAxisRaw("Horizontal");
         var y = (int)Input.GetAxisRaw("Vertical");
-        MoveRotation(x, y);
-        MovePosition(x, y);
+        var wasRotation = MoveRotation(x, y);
+        if (!wasRotation)
+        {
+
+            MovePosition(x, y);
+        }
     }
 
 
@@ -75,10 +79,10 @@ public class PlayerInput : MonoBehaviour
 
         var start = gameObject.transform.position;
         var end = start + new Vector3(x * MovePoint, y * MovePoint, 0);
-        var attemptEnd = start + new Vector3(( x + 1) * MovePoint, (y + 1) * MovePoint, 0);
-        var hit = Physics2D.Linecast(start, attemptEnd, layerBloking);
+        //var attemptEnd = start + new Vector3(( x + 1) * MovePoint, (y + 1) * MovePoint, 0);
+        var hit = Physics2D.Linecast(start, end, layerBloking);
 
-        Debug.Log($"end: {end }attemptEnd: { attemptEnd }");
+        //Debug.Log($"end: {end }attemptEnd: { attemptEnd }");
 
         if (hit.transform != null)
         {
@@ -92,18 +96,33 @@ public class PlayerInput : MonoBehaviour
     }
 
 
-    private void MoveRotation(int x, int y)
+    private bool MoveRotation(int x, int y)
     {
         if (x == 0 && y == 0)
         {
-            return;
+            return false;
         }
         if (x != 0)
         {
             y = 0;
         }
         var angle = Mathf.Atan2(x, y) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(-angle, Vector3.forward);
+        //Debug.Log($"Quaternion.AngleAxis(-angle, Vector3.forward);: {Quaternion.AngleAxis(-angle, Vector3.forward);} transform.rotation: {transform.rotation}");
+        var rotation = Quaternion.AngleAxis(-angle, Vector3.forward);
+        if (transform.rotation == rotation)
+        {
+            return false;
+        }
+        isMove = true;
+        StartCoroutine(RotateSmooth());
+        transform.rotation = rotation;
+        return true;
+    }
+
+    private IEnumerator RotateSmooth()
+    {
+        yield return new WaitForSeconds(0.050f);
+        isMove = false;
     }
     private IEnumerator MoveSmooth(Vector3 end)
     {
@@ -115,7 +134,7 @@ public class PlayerInput : MonoBehaviour
             {
                 break;
             }
-            var newPos = Vector3.MoveTowards(current, end, Time.deltaTime * MaxSpeed );
+            var newPos = Vector3.MoveTowards(current, end, Time.deltaTime * MaxSpeed);
             //Debug.Log($"newPos {newPos}");
             transform.position = newPos;
             current = transform.position;

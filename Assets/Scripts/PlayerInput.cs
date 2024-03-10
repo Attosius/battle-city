@@ -10,7 +10,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField]
     private float MaxSpeed = 1f;
     //[SerializeField]
-    private float MovePoint = 0.5f / 4;
+    private float MovePoint = 0.5f / 2;
 
     private float MapWidth = 16;
     [SerializeField]
@@ -97,6 +97,10 @@ public class PlayerInput : MonoBehaviour
         if (x == 0 && y == 0)
         {
             return;
+        }
+        if (x != 0)
+        {
+            y = 0;
         }
         var angle = Mathf.Atan2(x, y) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(-angle, Vector3.forward);

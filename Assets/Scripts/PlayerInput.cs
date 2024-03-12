@@ -10,9 +10,10 @@ public class PlayerInput : MonoBehaviour
     [SerializeField]
     private float MaxSpeed = 1f;
     //[SerializeField]
-    private float MovePoint = 0.5f / 2;
+    private float MapWidth = 0.5f;
 
-    private float MapWidth = 16;
+    private float MovePoint = 0.5f / 4; // part of move to move smooth 1/8 square
+
     [SerializeField]
     public LayerMask layerBloking;
 
@@ -59,6 +60,12 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
+    [SerializeField]
+    private Vector3 faceLeft;
+    [SerializeField]
+    private Vector3 faceRight;
+    [SerializeField]
+    private Vector3 moveVector;
 
     private void MovePosition(int x, int y)
     {
@@ -78,23 +85,35 @@ public class PlayerInput : MonoBehaviour
         }
 
         var start = gameObject.transform.position;
-        var end = start + new Vector3(x * MovePoint, y * MovePoint, 0);
+        moveVector = new Vector3(x * (MovePoint), y * MovePoint, 0);
+        var end = start + moveVector;
+        var faceTank = start + new Vector3(x * MovePoint, y * MovePoint, 0);
         //var attemptEnd = start + new Vector3(( x + 1) * MovePoint, (y + 1) * MovePoint, 0);
-        var hit = Physics2D.Linecast(start, end, layerBloking);
+        //var hit = Physics2D.Linecast(start, faceTank, layerBloking);
 
-        //Debug.Log($"end: {end }attemptEnd: { attemptEnd }");
+        faceLeft = faceTank - new Vector3(y * MapWidth / 4, x * MapWidth / 4, 0);
+        faceRight = faceTank + new Vector3(y * MapWidth / 4, x * MapWidth / 4, 0);
 
-        if (hit.transform != null)
+        var hitLeft = Physics2D.Linecast(faceLeft, faceLeft + moveVector, layerBloking);
+        var hitRight = Physics2D.Linecast(faceRight, faceRight + moveVector, layerBloking);
+
+        Debug.Log($"start: {start } end: {end } faceLeft: { faceLeft }faceRight: { faceRight }, faceLeft + moveVector {faceLeft + moveVector}");
+
+        if (hitLeft.transform != null || hitRight.transform != null)
         {
-            var layerBloking2 = LayerMask.NameToLayer("Wall");
-            var m = LayerMask.GetMask("Wall");
-            Debug.Log($"Hit: {hit.transform.name}");
+            //var layerBloking2 = LayerMask.NameToLayer("Wall");
+            //var m = LayerMask.GetMask("Wall");
+            Debug.Log($"Hit: {hitLeft.transform?.name} Hit2: {hitRight.transform?.name}");
             return;
         }
         isMove = true;
         StartCoroutine(MoveSmooth(end));
     }
-
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(faceLeft, faceLeft+moveVector);
+    }
 
     private bool MoveRotation(int x, int y)
     {

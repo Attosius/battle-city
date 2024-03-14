@@ -7619,11 +7619,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: all-tanks-sprite_398
+      name: all-tanks-sprite_outer
       rect:
         serializedVersion: 2
         x: 368
-        y: 0
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -7717,7 +7717,6 @@ TextureImporter:
       all-tanks-sprite_63: -6639680
       all-tanks-sprite_300: 2122260714
       all-tanks-sprite_308: 616965317
-      all-tanks-sprite_398: 395624474
       all-tanks-sprite_144: -82222992
       all-tanks-sprite_280: 1750695661
       all-tanks-sprite_158: -704396152
@@ -7975,6 +7974,7 @@ TextureImporter:
       all-tanks-sprite_330: 1716555944
       all-tanks-sprite_88: -1328260267
       all-tanks-sprite_208: -961707808
+      all-tanks-sprite_outer: 395624474
       all-tanks-sprite_206: -1229992382
       all-tanks-sprite_328: -1649560919
       all-tanks-sprite_321: 1715089184

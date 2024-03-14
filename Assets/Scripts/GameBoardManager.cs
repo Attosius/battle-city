@@ -5,21 +5,38 @@ using UnityEngine;
 
 public class GameBoardManager : MonoBehaviour
 {
-    public GameObject groundPf;
+    public GameObject mapGround;
+    public GameObject mapOuter;
+    public int mapWidth = 13;
     void Awake()
     {
-        for (float i = 0f; i < 13/2f; i+=0.5f)
+        for (int i = -1; i < mapWidth + 1 ; i++)
         {
-            for (float j = 0; j < 13/2f; j+=0.5f)
+            for (int j = -1; j < mapWidth + 1; j++)
             {
-                var position = new Vector3(i, j, 0);
-                //GUI.Label(new Rect(position, new Vector2(20, 20)), position.ToString());
-                //Debug.Log(position);
-                //Gizmos.
-                Instantiate(groundPf, position, Quaternion.identity, transform);
+                var position = new Vector3(i / 2f, j / 2f, 0);
+                if (i == -1 || i == mapWidth || j == -1 || j == mapWidth)
+                {
+                    Instantiate(mapOuter, position, Quaternion.identity, transform);
+                    continue;
+                }
+                Instantiate(mapGround, position, Quaternion.identity, transform);
             }
 
         }
+        for (float i = 0f; i < mapWidth; i++)
+        {
+            for (float j = 0; j < mapWidth; j++)
+            {
+                var position = new Vector3(i / 2f, j / 2f, 0);
+                //GUI.Label(new Rect(position, new Vector2(20, 20)), position.ToString());
+                //Debug.Log(position);
+                //Gizmos.
+                Instantiate(mapGround, position, Quaternion.identity, transform);
+            }
+
+        }
+
     }
     // Start is called before the first frame update
     void Start()

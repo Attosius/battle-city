@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7914146321976924266}
   - component: {fileID: 7669690814448212473}
   - component: {fileID: 1542076098768597743}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: TextCoordinates_Begin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 2615257173621211041}
   - component: {fileID: 8245378344038321728}
   - component: {fileID: 9059847935313831251}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: TextCoordinates_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,7 +356,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4109116493566930793}
   - component: {fileID: 1479795025408283467}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: blue_circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -441,7 +441,7 @@ GameObject:
   - component: {fileID: 7611780669778283918}
   - component: {fileID: 6549297502988112479}
   - component: {fileID: 7019252779958686205}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Map-Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -541,7 +541,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4818390264132107295}
   - component: {fileID: 329586244905087486}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: blue_circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

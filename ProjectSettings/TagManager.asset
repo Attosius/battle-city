@@ -13,14 +13,14 @@ TagManager:
   - UI
   - Jungle
   - Wall
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Outer
+  - Stone
+  - Water
+  - Ice
+  - Tank
+  - Bonus
+  - Eagle
+  - Ground
   - 
   - 
   - 
@@ -46,6 +46,12 @@ TagManager:
     locked: 0
   - name: Tanks
     uniqueID: 3258861025
+    locked: 0
+  - name: Water
+    uniqueID: 3603715469
+    locked: 0
+  - name: OnMapItems
+    uniqueID: 808948189
     locked: 0
   - name: Jungle
     uniqueID: 3203306719

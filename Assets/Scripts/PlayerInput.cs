@@ -22,10 +22,10 @@ public class PlayerInput : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         animator.StopPlayback();
-        layerBloking = new LayerMask
-        {
-            value = LayerMask.GetMask("Wall")
-        };
+        //layerBloking = new LayerMask
+        //{
+        //    value = LayerMask.GetMask("Wall")
+        //};
     }
 
     // Update is called once per frame

@@ -45,7 +45,7 @@ public class PlayerInput : MonoBehaviour
         {
 
             var start = gameObject.transform.position;
-            //var faceTank = start + new Vector3(MapTankWidth / 4, MapTankWidth / 4);
+            //var nextCenterTank = start + new Vector3(MapTankWidth / 4, MapTankWidth / 4);
             //var rotation = transform.rotation;
             var z = transform.localEulerAngles.z;
             faceCenterTank = start + Quaternion.Euler(0, 0, z) * Vector3.up * MapTankWidth/2;
@@ -82,6 +82,7 @@ public class PlayerInput : MonoBehaviour
     private Vector3 moveVector;
     [SerializeField]
     private Vector3 faceCenterTank;
+    private Vector3 nextCenterTank;
 
     private void MovePosition(int x, int y)
     {
@@ -100,15 +101,18 @@ public class PlayerInput : MonoBehaviour
             y = 0;
         }
 
-        var start = gameObject.transform.position;
+        var prevFaceCenterTank = faceCenterTank;
+        var center = gameObject.transform.position;
+        faceCenterTank = center + Quaternion.Euler(0, 0, transform.localEulerAngles.z) * Vector3.up * MapTankWidth / 2;
         moveVector = new Vector3(x * (MovePoint), y * MovePoint, 0);
-        var end = start + moveVector;
-        var faceTank = start + new Vector3(x * MovePoint, y * MovePoint, 0);
+        var end = center + moveVector;
+        nextCenterTank = center + new Vector3(x * MovePoint, y * MovePoint, 0);
+        var faceNextCenterTank = center + new Vector3(x * MovePoint, y * MovePoint, 0);
         //var attemptEnd = start + new Vector3(( x + 1) * MovePoint, (y + 1) * MovePoint, 0);
-        //var hit = Physics2D.Linecast(start, faceTank, layerBloking);
-
-        faceLeft = faceTank - new Vector3(y * MapTankWidth / 4, x * MapTankWidth / 4, 0);
-        faceRight = faceTank + new Vector3(y * MapTankWidth / 4, x * MapTankWidth / 4, 0);
+        //var hit = Physics2D.Linecast(start, nextCenterTank, layerBloking);
+        //faceTank = center + new Vector3(x * MovePoint, y * MovePoint, 0);
+        faceLeft = faceCenterTank - new Vector3(y * MapTankWidth / 4, x * MapTankWidth / 4, 0);
+        faceRight = faceCenterTank + new Vector3(y * MapTankWidth / 4, x * MapTankWidth / 4, 0);
 
         var hitLeft = Physics2D.Linecast(faceLeft, faceLeft + moveVector, layerBloking);
         var hitRight = Physics2D.Linecast(faceRight, faceRight + moveVector, layerBloking);
@@ -120,6 +124,7 @@ public class PlayerInput : MonoBehaviour
             //var layerBloking2 = LayerMask.NameToLayer("Wall");
             //var m = LayerMask.GetMask("Wall");
             Debug.Log($"Hit: {hitLeft.transform?.name} Hit2: {hitRight.transform?.name}");
+            faceCenterTank = prevFaceCenterTank;
             return;
         }
         isMove = true;
@@ -128,7 +133,14 @@ public class PlayerInput : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawLine(faceLeft, faceLeft+moveVector);
+        Gizmos.DrawLine(faceLeft, faceLeft + moveVector);
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(faceCenterTank, 0.02f);
+
+
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(faceRight, faceRight + moveVector);
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, faceCenterTank);
     }

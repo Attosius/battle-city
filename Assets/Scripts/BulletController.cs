@@ -34,6 +34,19 @@ public class BulletController : MonoBehaviour
             }
         }
     }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log($"OnCollisionEnter2D {collision.gameObject.name}");
+        foreach (var contact2 in collision.contacts)
+        {
+            //Debug.DrawRay(contact2.point, contact2.normal, Color.red, 20, true);
+        }
+        //ContactPoint2D contact = collision.contacts[0];
+        //Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
+        //Vector3 pos = contact.point;
+        //Instantiate(explosionPrefab, pos, rot);
+        //Destroy(gameObject);
+    }
 
     private void DisableObject()
     {

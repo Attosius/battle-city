@@ -10,7 +10,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField]
     private float MaxSpeed = 1f;
     //[SerializeField]
-    private float MapWidth = 0.5f;
+    private float MapTankWidth = 0.5f;
 
     private float MovePoint = 0.5f / 4; // part of move to move smooth 1/8 square
 
@@ -18,9 +18,13 @@ public class PlayerInput : MonoBehaviour
     public LayerMask layerBloking;
 
     public Animator animator;
+
+    public GameObject bullet;
+    private SpriteRenderer spriteRenderer;
     void Start()
     {
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         animator.StopPlayback();
         //layerBloking = new LayerMask
         //{
@@ -40,6 +44,16 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
 
+            var start = gameObject.transform.position;
+            //var faceTank = start + new Vector3(MapTankWidth / 4, MapTankWidth / 4);
+            //var rotation = transform.rotation;
+            var z = transform.localEulerAngles.z;
+            faceCenterTank = start + Quaternion.Euler(0, 0, z) * Vector3.up * MapTankWidth/2;
+            var bulletPrefab = Instantiate(bullet, faceCenterTank, Quaternion.Euler(0, 0, z));
+            var controller = bulletPrefab.GetComponent<BulletController>();
+            controller.Create(faceCenterTank, Quaternion.Euler(0, 0, z));
+            //Instantiate(bullet, faceCenterTank, Quaternion.Euler(0, 0, z));
+            //float angle = Quaternion.Angle(transform.rotation, target.rotation);
         }
     }
 
@@ -66,6 +80,8 @@ public class PlayerInput : MonoBehaviour
     private Vector3 faceRight;
     [SerializeField]
     private Vector3 moveVector;
+    [SerializeField]
+    private Vector3 faceCenterTank;
 
     private void MovePosition(int x, int y)
     {
@@ -91,13 +107,13 @@ public class PlayerInput : MonoBehaviour
         //var attemptEnd = start + new Vector3(( x + 1) * MovePoint, (y + 1) * MovePoint, 0);
         //var hit = Physics2D.Linecast(start, faceTank, layerBloking);
 
-        faceLeft = faceTank - new Vector3(y * MapWidth / 4, x * MapWidth / 4, 0);
-        faceRight = faceTank + new Vector3(y * MapWidth / 4, x * MapWidth / 4, 0);
+        faceLeft = faceTank - new Vector3(y * MapTankWidth / 4, x * MapTankWidth / 4, 0);
+        faceRight = faceTank + new Vector3(y * MapTankWidth / 4, x * MapTankWidth / 4, 0);
 
         var hitLeft = Physics2D.Linecast(faceLeft, faceLeft + moveVector, layerBloking);
         var hitRight = Physics2D.Linecast(faceRight, faceRight + moveVector, layerBloking);
 
-        Debug.Log($"start: {start } end: {end } faceLeft: { faceLeft }faceRight: { faceRight }, faceLeft + moveVector {faceLeft + moveVector}");
+        //Debug.Log($"start: {start } end: {end } faceLeft: { faceLeft }faceRight: { faceRight }, faceLeft + moveVector {faceLeft + moveVector}");
 
         if (hitLeft.transform != null || hitRight.transform != null)
         {
@@ -113,6 +129,8 @@ public class PlayerInput : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(faceLeft, faceLeft+moveVector);
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, faceCenterTank);
     }
 
     private bool MoveRotation(int x, int y)
@@ -135,6 +153,7 @@ public class PlayerInput : MonoBehaviour
         isMove = true;
         StartCoroutine(RotateSmooth());
         transform.rotation = rotation;
+        //transform.LookAt();
         return true;
     }
 

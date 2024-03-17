@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5691525821057996538}
   - component: {fileID: 5691525821057996533}
   - component: {fileID: 5691525821057996532}
+  - component: {fileID: -2646268442688719920}
   m_Layer: 9
   m_Name: Map-Stone-2-vert
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5691525821057996533
 SpriteRenderer:
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 808948189
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 135406365, guid: 7216c43ef976b0948bb1009d6b1f4b08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -95,7 +96,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.12029153, y: 0}
@@ -111,3 +112,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.25941694, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &-2646268442688719920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5691525821057996535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 349b056470ceb1943bfd87c759dd1c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 10
+  Health: 0
+  MaxArmor: 0
+  Armor: 0
+  IsDisperse: 0

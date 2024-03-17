@@ -723,9 +723,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 22400
   animator: {fileID: 0}
+  bullet: {fileID: 7561111768611483019, guid: 63bb96ec25c78484c9035e936adf760d, type: 3}
   faceLeft: {x: 0, y: 0, z: 0}
   faceRight: {x: 0, y: 0, z: 0}
   moveVector: {x: 0, y: 0, z: 0}
+  faceCenterTank: {x: 0, y: 0, z: 0}
 --- !u!95 &1406528807
 Animator:
   serializedVersion: 4
@@ -1109,6 +1111,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1810826210928861675, guid: 0c235867e8db22945b1c97f4d9171435, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6644971310548497164, guid: 0c235867e8db22945b1c97f4d9171435, type: 3}
       propertyPath: m_RootOrder
       value: 14

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -52,11 +53,18 @@ public class Damagable : MonoBehaviour
         Debug.Log($"Collidered with {collision.name}");
         
     }
+
+    public Vector3 contact = Vector3.zero;
+    public int count = 0;
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log($"OnCollisionEnter2D {collision.gameObject.name}");
+        Debug.Log($"OnCollisionEnter2D {collision.otherCollider.name}");
+        int i = 0;
         foreach (var contact2 in collision.contacts)
         {
+            contact = contact2.point;
+            //Gizmos.DrawSphere(contact2.point, 0.02f);
+            Debug.Log($"{i++} {contact2.point}");
             Debug.DrawRay(contact2.point, contact2.normal, Color.white, 20, true);
         }
 
@@ -66,5 +74,23 @@ public class Damagable : MonoBehaviour
         //Instantiate(explosionPrefab, pos, rot);
         //Destroy(gameObject);
     }
+    private void OnDrawGizmos()
+    {
 
+        Gizmos.color = Color.green;
+        if (count > 0)
+        {
+            Gizmos.color = Color.red;
+        }
+        if (count > 1)
+        {
+            Gizmos.color = Color.blue;
+        }
+        Gizmos.DrawSphere(contact, 0.02f);
+        if (contact != Vector3.zero)
+        {
+
+            count++;
+        }
+    }
 }

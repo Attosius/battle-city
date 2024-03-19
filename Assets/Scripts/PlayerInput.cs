@@ -71,13 +71,15 @@ public class PlayerInput : MonoBehaviour
             MovePosition(x, y);
         }
     }
-    
+
+    private Vector3 eulerCheck;
 
     private void MovePosition(int x, int y)
     {
         var movementVector = new Vector2(x, y);
         var center = gameObject.transform.position;
-        var euler = Quaternion.Euler(0, 0, transform.localEulerAngles.z) * Vector3.up * MapTankWidth / 2;
+        eulerCheck = Quaternion.Euler(0, 0, transform.localEulerAngles.z) * Vector3.up * MapTankWidth * 3 / 4;
+        var euler = Quaternion.Euler(0, 0, transform.localEulerAngles.z) * Vector3.up * MapTankWidth * 1 / 2;
         //var euler2 = Quaternion.Euler(0, 0, transform.localEulerAngles.z) * Vector3.down * MapTankWidth / 2;
         //var euler3 = Quaternion.Euler(0, 0, transform.localEulerAngles.z) * Vector3.left * MapTankWidth / 2;
         //var euler4 = Quaternion.Euler(0, 0, transform.localEulerAngles.z) * Vector3.up;
@@ -90,6 +92,11 @@ public class PlayerInput : MonoBehaviour
         centerLeft = center + Quaternion.Euler(0, 0, transform.localEulerAngles.z) * Vector3.left * MapTankWidth * 3/8;
         centerRight = center + Quaternion.Euler(0, 0, transform.localEulerAngles.z) * Vector3.right * MapTankWidth * 3/8;
         moveVector = euler;
+        var hitLeft = Physics2D.Linecast(centerLeft, centerLeft + eulerCheck, layerBloking);
+        var hitRight = Physics2D.Linecast(centerRight, centerRight + eulerCheck, layerBloking);
+
+        var hitLeft2 = Physics2D.Linecast(centerLeft, centerLeft + moveVector);
+        var hitRight2 = Physics2D.Linecast(centerRight, centerRight + moveVector);
         if (movementVector == Vector2.zero)
         {
             animator.enabled = false;
@@ -110,8 +117,6 @@ public class PlayerInput : MonoBehaviour
         
         //var hitLeft = Physics2D.OverlapCircle(centerLeft, 0.05f, layerBloking);
 
-        var hitLeft = Physics2D.Linecast(centerLeft, centerLeft + moveVector, layerBloking);
-        var hitRight = Physics2D.Linecast(centerRight, centerRight + moveVector, layerBloking);
 
         //Debug.Log($"start: {start } end: {end } centerLeft: { centerLeft }centerRight: { centerRight }, centerLeft + moveVector {centerLeft + moveVector}");
 
@@ -128,22 +133,23 @@ public class PlayerInput : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(centerLeft, centerLeft + moveVector);
 
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(frontCenterTank, 0.03f);
 
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.blue;
         Gizmos.DrawSphere(centerLeft, 0.03f);
 
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(centerLeft, centerLeft + eulerCheck);
+
+        Gizmos.color = Color.magenta;
         Gizmos.DrawSphere(centerRight, 0.03f);
 
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawLine(centerRight, centerRight + eulerCheck);
 
 
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(centerRight, centerRight + moveVector);
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, frontCenterTank);
     }

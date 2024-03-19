@@ -18,7 +18,7 @@ public class BulletController : MonoBehaviour
     public void Create(Vector3 faceCenterTank, Quaternion rotation)
     {
         rb2D.velocity = transform.up * speed;
-        //Instantiate(gameObject, faceCenterTank, rotation);
+        //Instantiate(gameObject, frontCenterTank, rotation);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -34,9 +34,10 @@ public class BulletController : MonoBehaviour
             }
         }
     }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
-        //Debug.Log($"OnCollisionEnter2D {collision.gameObject.name}");
+        Debug.Log($"OnCollisionEnter2D Bullet {collision.gameObject.name}");
         foreach (var contact2 in collision.contacts)
         {
             //Debug.DrawRay(contact2.point, contact2.normal, Color.red, 20, true);

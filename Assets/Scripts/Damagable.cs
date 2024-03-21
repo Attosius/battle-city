@@ -51,7 +51,16 @@ public class Damagable : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log($"Collidered with {collision.name}");
-        
+        var center = gameObject.transform.position;
+        var perpendicular = Vector2.Perpendicular(collision.attachedRigidbody.velocity.normalized);
+        var perpendicular2 = Vector2.Perpendicular(collision.attachedRigidbody.velocity.normalized) * -1;
+        //Physics.SyncTransforms();
+
+        int results;
+        var p1 = perpendicular * 0.125f;
+        var p2 = perpendicular2 * 0.125f;
+        var hit1 = Physics2D.Raycast(center, perpendicular, 0.125f);
+        var hit2 = Physics2D.Raycast(center, perpendicular2, 0.125f);
     }
     
     public Vector3 contactHit = Vector3.zero;
@@ -59,6 +68,11 @@ public class Damagable : MonoBehaviour
     public int i = 0;
     void OnCollisionEnter2D(Collision2D collision)
     {
+        var bulletController = collision.gameObject.GetComponent<BulletController>();
+        if (bulletController == null)
+        {
+            return;
+        }
         Debug.Log($"OnCollisionEnter2D {collision.otherCollider.name}");
         count++;
         foreach (var contact2 in collision.contacts)
@@ -69,7 +83,7 @@ public class Damagable : MonoBehaviour
             Debug.Log($"COUNT: {count}____i: {i++} {contact2.point} ");
             var perpendicular = Vector2.Perpendicular(contact2.relativeVelocity.normalized);
             var perpendicular2 = Vector2.Perpendicular(contact2.relativeVelocity.normalized) * -1;
-            Physics.SyncTransforms();
+            //Physics.SyncTransforms();
 
             int results;
             var p1 = perpendicular * 0.125f;
@@ -85,10 +99,10 @@ public class Damagable : MonoBehaviour
                 Debug.DrawRay(center, p2, Color.green, 20);
             }
 
-            var hit1 = Physics2D.Raycast(contact2.point, perpendicular, 0.125f);
-            var hit2 = Physics2D.Raycast(contact2.point, perpendicular2, 0.125f);
-            var hit11 = Physics2D.Linecast(contact2.point, p1);
-            var hit21 = Physics2D.Linecast(contact2.point, p2);
+            var hit1 = Physics2D.Raycast(center, perpendicular, 0.125f);
+            var hit2 = Physics2D.Raycast(center, perpendicular2, 0.125f);
+            //var hit1 = Physics2D.Linecast(contact2.point, p1);
+            //var hit2 = Physics2D.Linecast(contact2.point, p2);
 
             if (hit1.transform != null)
             {
@@ -119,7 +133,7 @@ public class Damagable : MonoBehaviour
                 }
             }
             OnHit(1);
-
+            return;
         }
 
         //ContactPoint2D contact = collision.contacts[0];

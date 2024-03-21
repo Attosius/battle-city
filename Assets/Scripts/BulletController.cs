@@ -22,17 +22,17 @@ public class BulletController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"Collidered with {collision.name}");
-        var damageable = collision.GetComponent<Damagable>();
-        if (damageable != null)
-        {
-            var damage = 1;
-            damageable.OnHit(damage);
-            if (!damageable.IsDisperse || this.HisDisperse)
-            {
-                DisableObject();
-            }
-        }
+        //Debug.Log($"Collidered with {collision.name}");
+        //var damageable = collision.GetComponent<Damagable>();
+        //if (damageable != null)
+        //{
+        //    var damage = 1;
+        //    damageable.OnHit(damage);
+        //    if (!damageable.IsDisperse || this.HisDisperse)
+        //    {
+        //        DisableObject();
+        //    }
+        //}
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -42,6 +42,7 @@ public class BulletController : MonoBehaviour
         {
             //Debug.DrawRay(contact2.point, contact2.normal, Color.red, 20, true);
         }
+        DisableObject();
         //ContactPoint2D contact = collision.contacts[0];
         //Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
         //Vector3 pos = contact.point;

@@ -53,19 +53,73 @@ public class Damagable : MonoBehaviour
         Debug.Log($"Collidered with {collision.name}");
         
     }
-
-    public Vector3 contact = Vector3.zero;
-    public int count = 0;
+    
+    public Vector3 contactHit = Vector3.zero;
+    public static int count = 0;
+    public int i = 0;
     void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log($"OnCollisionEnter2D {collision.otherCollider.name}");
-        int i = 0;
+        count++;
         foreach (var contact2 in collision.contacts)
         {
-            contact = contact2.point;
+            var contact = contact2.point;
+            var center = contact2.otherCollider.gameObject.transform.position;
             //Gizmos.DrawSphere(contact2.point, 0.02f);
-            Debug.Log($"{i++} {contact2.point}");
-            Debug.DrawRay(contact2.point, contact2.normal, Color.white, 20, true);
+            Debug.Log($"COUNT: {count}____i: {i++} {contact2.point} ");
+            var perpendicular = Vector2.Perpendicular(contact2.relativeVelocity.normalized);
+            var perpendicular2 = Vector2.Perpendicular(contact2.relativeVelocity.normalized) * -1;
+            Physics.SyncTransforms();
+
+            int results;
+            var p1 = perpendicular * 0.125f;
+            var p2 = perpendicular2 * 0.125f;
+            if (count % 2 == 0)
+            {
+                Debug.DrawRay(center, p1, Color.white, 10);
+                Debug.DrawRay(center, p2, Color.red, 10);
+            }
+            else
+            {
+                Debug.DrawRay(center, p1, Color.blue, 20);
+                Debug.DrawRay(center, p2, Color.green, 20);
+            }
+
+            var hit1 = Physics2D.Raycast(contact2.point, perpendicular, 0.125f);
+            var hit2 = Physics2D.Raycast(contact2.point, perpendicular2, 0.125f);
+            var hit11 = Physics2D.Linecast(contact2.point, p1);
+            var hit21 = Physics2D.Linecast(contact2.point, p2);
+
+            if (hit1.transform != null)
+            {
+                if (!hit1.transform.name.Contains("("))
+                {
+
+                }
+                Debug.Log($"Hit damage {hit1.transform}");
+                contactHit = hit1.transform.position;
+                var damageable = hit1.transform.gameObject.GetComponent<Damagable>();
+                if (damageable != null)
+                {
+                    var damage = 1;
+                    damageable.OnHit(damage);
+                }
+            }
+            if (hit2.transform != null)
+            {
+                if (!hit2.transform.name.Contains("("))
+                {
+
+                }
+                var damageable = hit2.transform.gameObject.GetComponent<Damagable>();
+                if (damageable != null)
+                {
+                    var damage = 1;
+                    damageable.OnHit(damage);
+                }
+            }
+            OnHit(1);
+
         }
 
         //ContactPoint2D contact = collision.contacts[0];
@@ -76,21 +130,7 @@ public class Damagable : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-
-        Gizmos.color = Color.green;
-        if (count > 0)
-        {
-            Gizmos.color = Color.red;
-        }
-        if (count > 1)
-        {
-            Gizmos.color = Color.blue;
-        }
-        Gizmos.DrawSphere(contact, 0.02f);
-        if (contact != Vector3.zero)
-        {
-
-            count++;
-        }
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(contactHit, 0.03f);
     }
 }

@@ -28,6 +28,8 @@ public class PlayerInput : MonoBehaviour
     public Vector3 moveVector;
     public Vector3 frontCenterTank;
     public Vector3 nextCenterTank;
+    public Rect nextRect;
+    public Vector2 sphereCenter;
 
     void Start()
     {
@@ -78,7 +80,7 @@ public class PlayerInput : MonoBehaviour
     {
         var movementVector = new Vector2(x, y);
         var center = gameObject.transform.position;
-        eulerCheck = Quaternion.Euler(0, 0, transform.localEulerAngles.z) * Vector3.up * MapTankWidth * 3 / 4;
+        eulerCheck = Quaternion.Euler(0, 0, transform.localEulerAngles.z) * Vector3.up * MapTankWidth * 15 / 16;
         var euler = Quaternion.Euler(0, 0, transform.localEulerAngles.z) * Vector3.up * MapTankWidth * 1 / 2;
         //var euler2 = Quaternion.Euler(0, 0, transform.localEulerAngles.z) * Vector3.down * MapTankWidth / 2;
         //var euler3 = Quaternion.Euler(0, 0, transform.localEulerAngles.z) * Vector3.left * MapTankWidth / 2;
@@ -95,6 +97,11 @@ public class PlayerInput : MonoBehaviour
         var hitLeft = Physics2D.Linecast(centerLeft, centerLeft + eulerCheck, layerBloking);
         var hitRight = Physics2D.Linecast(centerRight, centerRight + eulerCheck, layerBloking);
 
+        var sizey = (centerRight - centerLeft).y;
+        var sizex = (centerLeft + eulerCheck - centerLeft).x;
+
+        nextRect = new Rect(centerLeft, new Vector2(sizex, sizey));
+        sphereCenter = frontCenterTank + Quaternion.Euler(0, 0, transform.localEulerAngles.z) * Vector3.up * MapTankWidth * 3 / 32;
         var hitLeft2 = Physics2D.Linecast(centerLeft, centerLeft + moveVector);
         var hitRight2 = Physics2D.Linecast(centerRight, centerRight + moveVector);
         if (movementVector == Vector2.zero)
@@ -149,11 +156,18 @@ public class PlayerInput : MonoBehaviour
         Gizmos.color = Color.magenta;
         Gizmos.DrawLine(centerRight, centerRight + eulerCheck);
 
-
+        Gizmos.color = Color.yellow;
+        DrawRect(nextRect);
+        Gizmos.DrawWireSphere(sphereCenter, 3/16f);
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, frontCenterTank);
     }
 
+    void DrawRect(Rect rect)
+    {
+        Debug.Log($"center rect: {rect.center}");
+        Gizmos.DrawWireCube(new Vector3(rect.center.x, rect.center.y, 0.01f), new Vector3(rect.size.x, rect.size.y, 0.01f));
+    }
     private bool MoveRotation(int x, int y)
     {
         if (x == 0 && y == 0)

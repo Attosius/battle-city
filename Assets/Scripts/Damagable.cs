@@ -19,6 +19,7 @@ public class Damagable : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public BoxCollider2D boxCollider2D;
     public Sprite sprite;
+    private float MapTankWidth = 0.5f;
 
     void Awake()
     {
@@ -39,8 +40,6 @@ public class Damagable : MonoBehaviour
             Health -= damage;
         }
 
-        //spriteRenderer.sprite = sprite;
-        //boxCollider2D.bounds.
         if (Health < 1)
         {
             Debug.Log($"Death {gameObject.name}");
@@ -51,21 +50,21 @@ public class Damagable : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log($"Collidered with {collision.name}");
-        var center = gameObject.transform.position;
-        var perpendicular = Vector2.Perpendicular(collision.attachedRigidbody.velocity.normalized);
-        var perpendicular2 = Vector2.Perpendicular(collision.attachedRigidbody.velocity.normalized) * -1;
-        //Physics.SyncTransforms();
+        //var center = gameObject.transform.position;
+        //var perpendicular = Vector2.Perpendicular(collision.attachedRigidbody.velocity.normalized);
+        //var perpendicular2 = Vector2.Perpendicular(collision.attachedRigidbody.velocity.normalized) * -1;
+        ////Physics.SyncTransforms();
 
-        int results;
-        var p1 = perpendicular * 0.125f;
-        var p2 = perpendicular2 * 0.125f;
-        var hit1 = Physics2D.Raycast(center, perpendicular, 0.125f);
-        var hit2 = Physics2D.Raycast(center, perpendicular2, 0.125f);
+        //int results;
+        //var p1 = perpendicular * 0.125f;
+        //var p2 = perpendicular2 * 0.125f;
+        //var hit1 = Physics2D.Raycast(center, perpendicular, 0.125f);
+        //var hit2 = Physics2D.Raycast(center, perpendicular2, 0.125f);
     }
     
-    public Vector3 contactHit = Vector3.zero;
-    public static int count = 0;
-    public int i = 0;
+    //public Vector3 contactHit = Vector3.zero;
+    //public static int count = 0;
+    //public int i = 0;
     void OnCollisionEnter2D(Collision2D collision)
     {
         var bulletController = collision.gameObject.GetComponent<BulletController>();
@@ -74,44 +73,37 @@ public class Damagable : MonoBehaviour
             return;
         }
         Debug.Log($"OnCollisionEnter2D {collision.otherCollider.name}");
-        count++;
         foreach (var contact2 in collision.contacts)
         {
-            var contact = contact2.point;
             var center = contact2.otherCollider.gameObject.transform.position;
-            //Gizmos.DrawSphere(contact2.point, 0.02f);
-            Debug.Log($"COUNT: {count}____i: {i++} {contact2.point} ");
             var perpendicular = Vector2.Perpendicular(contact2.relativeVelocity.normalized);
             var perpendicular2 = Vector2.Perpendicular(contact2.relativeVelocity.normalized) * -1;
             //Physics.SyncTransforms();
 
-            int results;
-            var p1 = perpendicular * 0.125f;
-            var p2 = perpendicular2 * 0.125f;
-            if (count % 2 == 0)
-            {
-                Debug.DrawRay(center, p1, Color.white, 10);
-                Debug.DrawRay(center, p2, Color.red, 10);
-            }
-            else
-            {
-                Debug.DrawRay(center, p1, Color.blue, 20);
-                Debug.DrawRay(center, p2, Color.green, 20);
-            }
+            //int results;
+            //var p1 = perpendicular * 0.125f;
+            //var p2 = perpendicular2 * 0.125f;
+            //if (count % 2 == 0)
+            //{
+            //    Debug.DrawRay(center, p1, Color.white, 10);
+            //    Debug.DrawRay(center, p2, Color.red, 10);
+            //}
+            //else
+            //{
+            //    Debug.DrawRay(center, p1, Color.blue, 20);
+            //    Debug.DrawRay(center, p2, Color.green, 20);
+            //}
 
-            var hit1 = Physics2D.Raycast(center, perpendicular, 0.125f);
-            var hit2 = Physics2D.Raycast(center, perpendicular2, 0.125f);
-            //var hit1 = Physics2D.Linecast(contact2.point, p1);
-            //var hit2 = Physics2D.Linecast(contact2.point, p2);
+
+            // wall right + wall left damage
+            var hit1 = Physics2D.Raycast(center, perpendicular, MapTankWidth / 4f);
+            var hit2 = Physics2D.Raycast(center, perpendicular2, MapTankWidth / 4f);
 
             if (hit1.transform != null)
             {
-                if (!hit1.transform.name.Contains("("))
-                {
-
-                }
+                
                 Debug.Log($"Hit damage {hit1.transform}");
-                contactHit = hit1.transform.position;
+                //contactHit = hit1.transform.position;
                 var damageable = hit1.transform.gameObject.GetComponent<Damagable>();
                 if (damageable != null)
                 {
@@ -121,10 +113,6 @@ public class Damagable : MonoBehaviour
             }
             if (hit2.transform != null)
             {
-                if (!hit2.transform.name.Contains("("))
-                {
-
-                }
                 var damageable = hit2.transform.gameObject.GetComponent<Damagable>();
                 if (damageable != null)
                 {
@@ -135,16 +123,10 @@ public class Damagable : MonoBehaviour
             OnHit(1);
             return;
         }
-
-        //ContactPoint2D contact = collision.contacts[0];
-        //Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
-        //Vector3 pos = contact.point;
-        //Instantiate(explosionPrefab, pos, rot);
-        //Destroy(gameObject);
     }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(contactHit, 0.03f);
+        //Gizmos.DrawSphere(contactHit, 0.03f);
     }
 }

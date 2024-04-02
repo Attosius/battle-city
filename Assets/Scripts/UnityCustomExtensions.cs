@@ -29,4 +29,19 @@ public static class UnityCustomExtensions
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(rect.position, 0.03f);
     }
+
+    public static LayerMask GetLayerMaskByName(string layerName)
+    {
+        var layerMask = new LayerMask();
+        int layerId = LayerMask.NameToLayer(layerName);
+        if (layerId != -1)
+        {
+            layerMask = 1 << layerId;
+        }
+        else
+        {
+            Debug.LogWarning("Layer not found: " + layerName);
+        }
+        return layerMask;
+    }
 }

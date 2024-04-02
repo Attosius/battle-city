@@ -36,7 +36,7 @@ public class BulletController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log($"OnCollisionEnter2D Bullet {collision.gameObject.name}");
+        Debug.Log($"OnCollisionEnter2D into Bullet {collision.gameObject.name}");
         DisableObject();
         //ContactPoint2D contact = collision.contacts[0];
         //Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -72,12 +73,13 @@ public class Damagable : MonoBehaviour
         {
             return;
         }
-        Debug.Log($"OnCollisionEnter2D {collision.otherCollider.name}");
-        foreach (var contact2 in collision.contacts)
+        Debug.Log($"OnCollisionEnter2D from {collision.gameObject.name} into {collision.otherCollider.name}");
+        var layerMask = UnityCustomExtensions.GetLayerMaskByName("Wall");
+        foreach (var contact in collision.contacts)
         {
-            var center = contact2.otherCollider.gameObject.transform.position;
-            var perpendicular = Vector2.Perpendicular(contact2.relativeVelocity.normalized);
-            var perpendicular2 = Vector2.Perpendicular(contact2.relativeVelocity.normalized) * -1;
+            var center = contact.otherCollider.gameObject.transform.position;
+            var perpendicularLeft = Vector2.Perpendicular(contact.relativeVelocity.normalized);
+            var perpendicularRight = Vector2.Perpendicular(contact.relativeVelocity.normalized) * -1;
             //Physics.SyncTransforms();
 
             //int results;
@@ -96,34 +98,41 @@ public class Damagable : MonoBehaviour
 
 
             // wall right + wall left damage
-            var hit1 = Physics2D.Raycast(center, perpendicular, MapTankWidth / 4f);
-            var hit2 = Physics2D.Raycast(center, perpendicular2, MapTankWidth / 4f);
+            var hitsLeft = Physics2D.RaycastAll(center, perpendicularLeft, MapTankWidth / 4f, layerMask);
+            var hitsRight = Physics2D.RaycastAll(center, perpendicularRight, MapTankWidth / 4f, layerMask);
 
-            if (hit1.transform != null)
-            {
-                
-                Debug.Log($"Hit damage {hit1.transform}");
-                //contactHit = hit1.transform.position;
-                var damageable = hit1.transform.gameObject.GetComponent<Damagable>();
-                if (damageable != null)
-                {
-                    var damage = 1;
-                    damageable.OnHit(damage);
-                }
-            }
-            if (hit2.transform != null)
-            {
-                var damageable = hit2.transform.gameObject.GetComponent<Damagable>();
-                if (damageable != null)
-                {
-                    var damage = 1;
-                    damageable.OnHit(damage);
-                }
-            }
+            hitsLeft.ToList().ForEach(x => OnHitWall(x));
+            hitsRight.ToList().ForEach(x => OnHitWall(x));
+            //if (hit1.transform != null)
+            //{
+            //    OnHitWall(hit1);
+            //}
+            //if (hit2.transform != null)
+            //{
+            //    var damageable = hit2.transform.gameObject.GetComponent<Damagable>();
+            //    if (damageable != null)
+            //    {
+            //        var damage = 1;
+            //        damageable.OnHit(damage);
+            //    }
+            //}
             OnHit(1);
             return;
         }
     }
+
+    private static void OnHitWall(RaycastHit2D hit1)
+    {
+        Debug.Log($"Hit damage {hit1.transform}");
+        //contactHit = hit1.transform.position;
+        var damageable = hit1.transform.gameObject.GetComponent<Damagable>();
+        if (damageable != null)
+        {
+            var damage = 1;
+            damageable.OnHit(damage);
+        }
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

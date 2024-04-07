@@ -24,7 +24,9 @@ public class EnemyController : MonoBehaviour
 
     public Coroutine coroutine;
     public UnityEvent OnEndMove = new UnityEvent();
-    // Start is called before the first frame update
+    private readonly List<Vector2> _directions = new() { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
+    public int EstimateMoves = 0;
+    public Vector2 CurrentDirection = Vector2.up;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -41,27 +43,19 @@ public class EnemyController : MonoBehaviour
         //var wasRotation = MoveRotation(1, 0);
     }
 
-    private bool MoveRotation(int x, int y)
+    private bool MoveRotation(Vector2 direction)
     {
-        if (x == 0 && y == 0)
-        {
-            return false;
-        }
-        if (x != 0)
-        {
-            y = 0;
-        }
-        var angle = Mathf.Atan2(x, y) * Mathf.Rad2Deg;
-        //Debug.Log($"Quaternion.AngleAxis(-angle, Vector3.forward);: {Quaternion.AngleAxis(-angle, Vector3.forward);} transform.rotation: {transform.rotation}");
+
+        var angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
         var rotation = Quaternion.AngleAxis(-angle, Vector3.forward);
         if (transform.rotation == rotation)
         {
             return false;
         }
         IsMove = true;
-        StartCoroutine(RotateSmooth());
+        //StartCoroutine(RotateSmooth());
         transform.rotation = rotation;
-        //transform.LookAt();
+        IsMove = false;
         return true;
     }
     private IEnumerator RotateSmooth()
@@ -76,14 +70,21 @@ public class EnemyController : MonoBehaviour
         {
             return;
         }
-        var movementVector = Vector2.up;
 
-
-        if (movementVector == Vector2.zero)
+        if (EstimateMoves == 0)
         {
-            animator.enabled = false;
-            return;
+            GeneratePath();
         }
+
+        EstimateMoves--;
+        //var movementVector = Path.Dequeue();
+
+
+        //if (movementVector == Vector2.zero)
+        //{
+        //    animator.enabled = false;
+        //    return;
+        //}
         animator.enabled = true;
         var centerTank = transform.position;
         var boundsTank = boxCollider2D.bounds;
@@ -100,7 +101,7 @@ public class EnemyController : MonoBehaviour
         {
             foreach (var h in hits)
             {
-                h.transform.gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.red;
+                //h.transform.gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.red;
                 Debug.Log($"BoxCastAll hit: {h.transform.gameObject.name}");
             }
             return;
@@ -109,6 +110,15 @@ public class EnemyController : MonoBehaviour
         coroutine = StartCoroutine(MoveSmooth(end));
 
 
+    }
+ 
+
+    private void GeneratePath()
+    {
+        EstimateMoves =  Random.Range(1, 12);
+        CurrentDirection = _directions[Random.Range(0, _directions.Count)];
+        //CurrentDirection = Vector2.left; 
+        MoveRotation(CurrentDirection);
     }
 
     private IEnumerator MoveSmooth(Vector3 end)

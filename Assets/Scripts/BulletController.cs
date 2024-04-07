@@ -48,7 +48,8 @@ public class BulletController : MonoBehaviour
     private void DisableObject()
     {
         rb2D.velocity = Vector2.zero;
-        gameObject.SetActive(false);
+        gameObject.SetActive(false); // todo set pool
+        
     }
 
 }

@@ -42,6 +42,7 @@ public class PlayerInput : MonoBehaviour
     public Vector2 CenterRect = Vector2.up;
     public Rect RectTo;
     public float Rotation = 0;
+    public Coroutine coroutine;
 
 
 
@@ -133,7 +134,7 @@ public class PlayerInput : MonoBehaviour
             return;
         }
         IsMove = true;
-        StartCoroutine(MoveSmooth(end));
+        coroutine = StartCoroutine(MoveSmooth(end));
     }
 
     private void OnDrawGizmos()
@@ -141,13 +142,13 @@ public class PlayerInput : MonoBehaviour
         Gizmos.color = Color.blue;
         var thickness = 10;
 
-        Handles.DrawBezier(Rect.center, RectTo.center, Rect.center, RectTo.center, Color.blue, null, thickness);
-        Gizmos.DrawLine(Rect.center, RectTo.center);
+        //Handles.DrawBezier(Rect.center, RectTo.center, Rect.center, RectTo.center, Color.blue, null, thickness);
+        //Gizmos.DrawLine(Rect.center, RectTo.center);
 
         //Gizmos.DrawSphere(nextRect.center, 0.03f);
         ////////////////////
-        UnityCustomExtensions.DrawRect(Rect, Color.yellow, Rotation);
-        UnityCustomExtensions.DrawRect(RectTo, Color.green, Rotation);
+        //UnityCustomExtensions.DrawRect(Rect, Color.yellow, Rotation);
+        //UnityCustomExtensions.DrawRect(RectTo, Color.green, Rotation);
     }
 
     private bool MoveRotation(int x, int y)

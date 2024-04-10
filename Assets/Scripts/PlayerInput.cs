@@ -119,15 +119,16 @@ public class PlayerInput : MonoBehaviour
         ///
 
 
+        //Physics2D.queriesStartInColliders = false;
         var hits = Physics2D.BoxCastAll(boundsTank.center, boundsTank.size, transform.eulerAngles.z, direction, distance, layerBloking);
-        //if (hits.Length > 0)
-        //{
-        //    foreach (var h in hits)
-        //    {
-        //        h.transform.gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.red;
-        //        Debug.Log($"BoxCastAll hit: {h.transform.gameObject.name}");
-        //    }
-        //}
+        if (hits.Length > 0)
+        {
+            foreach (var h in hits)
+            {
+                h.transform.gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.yellow;
+                Debug.Log($"BoxCastAll hit: {h.transform.gameObject.name}");
+            }
+        }
 
         if (hits.Length > 0)
         {

@@ -153,6 +153,6 @@ MonoBehaviour:
   animator: {fileID: 0}
   spriteRenderer: {fileID: 0}
   bullet: {fileID: 7561111768611483019, guid: 63bb96ec25c78484c9035e936adf760d, type: 3}
-  OnEndMove:
-    m_PersistentCalls:
-      m_Calls: []
+  EstimateMoves: 0
+  CurrentDirection: {x: 0, y: 1}
+  ShadowPrefab: {fileID: 364796242915173413, guid: 4685041e34a1d414cad98af1028798e5, type: 3}

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -23,7 +24,7 @@ public class EnemyController : MonoBehaviour
     private BoxCollider2D boxCollider2D;
 
     public Coroutine coroutine;
-    public UnityEvent OnEndMove = new UnityEvent();
+    private UnityEvent OnEndMove = new UnityEvent();
     private readonly List<Vector2> _directions = new() { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
     public int EstimateMoves = 0;
     public Vector2 CurrentDirection = Vector2.up;
@@ -39,7 +40,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnEndMoveListener()
     {
-        Debug.Log($"End move {gameObject.name}");
+        //Debug.Log($"End move {gameObject.name}");
         //var wasRotation = MoveRotation(1, 0);
     }
 
@@ -63,6 +64,8 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(0.050f);
         IsMove = false;
     }
+    public GameObject ShadowPrefab;
+    private GameObject _shadowRef;
     // Update is called once per frame
     void Update()
     {
@@ -77,14 +80,7 @@ public class EnemyController : MonoBehaviour
         }
 
         EstimateMoves--;
-        //var movementVector = Path.Dequeue();
 
-
-        //if (movementVector == Vector2.zero)
-        //{
-        //    animator.enabled = false;
-        //    return;
-        //}
         animator.enabled = true;
         var centerTank = transform.position;
         var boundsTank = boxCollider2D.bounds;
@@ -92,7 +88,7 @@ public class EnemyController : MonoBehaviour
         var distance = MovePoint;
         var end = centerTank + direction.normalized * distance;
 
-
+        //Physics2D.queriesStartInColliders = false;
         var hits = Physics2D.BoxCastAll(boundsTank.center, boundsTank.size, transform.eulerAngles.z, direction, distance, layerBloking);
         
 
@@ -107,6 +103,7 @@ public class EnemyController : MonoBehaviour
             return;
         }
         IsMove = true;
+        _shadowRef = Instantiate(ShadowPrefab, end, this.transform.rotation);
         coroutine = StartCoroutine(MoveSmooth(end));
 
 
@@ -115,7 +112,7 @@ public class EnemyController : MonoBehaviour
 
     private void GeneratePath()
     {
-        EstimateMoves =  Random.Range(1, 12);
+        EstimateMoves = 10;// Random.Range(1, 12);
         CurrentDirection = _directions[Random.Range(0, _directions.Count)];
         //CurrentDirection = Vector2.left; 
         MoveRotation(CurrentDirection);
@@ -140,6 +137,8 @@ public class EnemyController : MonoBehaviour
         }
         //yield return new WaitForSeconds(1/3f);
         //transform.position = end;
+        //Shadow.SetActive(false);
+        Destroy(_shadowRef);
         IsMove = false;
         OnEndMove?.Invoke();
     }

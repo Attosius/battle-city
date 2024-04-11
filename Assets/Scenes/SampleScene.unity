@@ -820,8 +820,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 645f8cfdeac7e8e4e8c39eb2f0417408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MousePosition: {x: 0.56320477, y: 4.6555767, z: -3.878418}
-  MousePositionString: (0.56, 4.66)
+  MousePosition: {x: -1.3231487, y: 4.4758644, z: -4.4433594}
+  MousePositionString: (-1.32, 4.48)
 --- !u!114 &555245311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,8 +846,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 645f8cfdeac7e8e4e8c39eb2f0417408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MousePosition: {x: 0.56320477, y: 4.6555767, z: -3.878418}
-  MousePositionString: (0.56, 4.66)
+  MousePosition: {x: -1.3231487, y: 4.4758644, z: -4.4433594}
+  MousePositionString: (-1.32, 4.48)
 --- !u!1001 &599221993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1199,7 +1199,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &714965969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1693,7 +1693,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1045774752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1837,7 +1837,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1091996264}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6, y: 6, z: 0}
+  m_LocalPosition: {x: 4.000006, y: 6, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2530,7 +2530,7 @@ GameObject:
   - component: {fileID: 1406528806}
   - component: {fileID: 1406528809}
   - component: {fileID: 1406528810}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2545,7 +2545,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406528803}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 3.0000048, y: 4.9375076, z: 0}
+  m_LocalPosition: {x: 4.562507, y: 5.5000086, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2566,10 +2566,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsMove: 0
   MaxSpeed: 1
+  MapTankWidth: 0.5
+  MovePoint: 0.25
   layerBloking:
     serializedVersion: 2
-    m_Bits: 153472
+    m_Bits: 415616
   animator: {fileID: 0}
+  boxCollider2D: {fileID: 0}
+  ShadowPrefab: {fileID: 364796242915173413, guid: 4685041e34a1d414cad98af1028798e5, type: 3}
+  _shadowRef: {fileID: 0}
   bullet: {fileID: 7561111768611483019, guid: 63bb96ec25c78484c9035e936adf760d, type: 3}
   centerLeft: {x: 0, y: 0, z: 0}
   centerRight: {x: 0, y: 0, z: 0}
@@ -2707,8 +2712,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 645f8cfdeac7e8e4e8c39eb2f0417408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MousePosition: {x: 0.56320477, y: 4.6555767, z: -3.878418}
-  MousePositionString: (0.56, 4.66)
+  MousePosition: {x: -1.3231487, y: 4.4758644, z: -4.4433594}
+  MousePositionString: (-1.32, 4.48)
 --- !u!1001 &1419881489
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3358,7 +3363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1309939977667849096, guid: bbc0de493ced0bc48b6cff68be96dc5d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.0540378
+      value: 0.55403686
       objectReference: {fileID: 0}
     - target: {fileID: 1309939977667849096, guid: bbc0de493ced0bc48b6cff68be96dc5d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3537,7 +3542,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1912136338
 MonoBehaviour:
   m_ObjectHideFlags: 0

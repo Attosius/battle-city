@@ -149,7 +149,7 @@ MonoBehaviour:
   MaxSpeed: 1
   layerBloking:
     serializedVersion: 2
-    m_Bits: 153472
+    m_Bits: 415616
   animator: {fileID: 0}
   spriteRenderer: {fileID: 0}
   bullet: {fileID: 7561111768611483019, guid: 63bb96ec25c78484c9035e936adf760d, type: 3}

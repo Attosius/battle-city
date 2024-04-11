@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3646042926782626623}
   - component: {fileID: 6071750018764285237}
   - component: {fileID: 9070557021804085221}
-  m_Layer: 12
+  m_Layer: 18
   m_Name: Tank-Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

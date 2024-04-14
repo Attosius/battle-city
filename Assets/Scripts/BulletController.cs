@@ -50,7 +50,7 @@ public class BulletController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log($"OnCollisionEnter2D from Bullet to {collision.gameObject.name}");
+        //Debug.Log($"OnCollisionEnter2D from Bullet to {collision.gameObject.name}");
         // todo bullet to bullet with different tags
         var target = collision.collider.gameObject;
         if (target.tag == "Shadow" || Parent == null)
@@ -68,7 +68,7 @@ public class BulletController : MonoBehaviour
         }
         if (target == Parent)
         {
-            // self hit
+            // self hit (ignore collision already check it)
             return;
         }
 

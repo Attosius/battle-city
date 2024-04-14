@@ -87,7 +87,7 @@ public class Damagable : MonoBehaviour
 
         if (bulletController.Parent == collision.otherCollider.gameObject)
         {
-            // self hit
+            // self hit (ignore collision already check it)
             return;
         }
 
@@ -99,7 +99,7 @@ public class Damagable : MonoBehaviour
         }
 
         var currentObject = bulletController.GetCurrentObject();
-
+        // TODO fix not only wall hit
         //Debug.Log($"OnCollisionEnter2D from {collision.gameObject.name} into {collision.otherCollider.name}");
         var layerMask = UnityCustomExtensions.GetLayerMaskByName("Wall");
         foreach (var contact in collision.contacts)

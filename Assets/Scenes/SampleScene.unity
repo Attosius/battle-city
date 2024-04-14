@@ -820,8 +820,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 645f8cfdeac7e8e4e8c39eb2f0417408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MousePosition: {x: 5.4004817, y: -3.4968069, z: -7.8222656}
-  MousePositionString: (5.40, -3.50)
+  MousePosition: {x: -5.623872, y: 1.1665612, z: -6.991211}
+  MousePositionString: (-5.62, 1.17)
 --- !u!114 &555245311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,8 +846,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 645f8cfdeac7e8e4e8c39eb2f0417408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MousePosition: {x: 5.4004817, y: -3.4968069, z: -7.8222656}
-  MousePositionString: (5.40, -3.50)
+  MousePosition: {x: -5.623872, y: 1.1665612, z: -6.991211}
+  MousePositionString: (-5.62, 1.17)
 --- !u!1001 &599221993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1199,7 +1199,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &714965969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1693,7 +1693,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1045774752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1814,7 +1814,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1091996265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2186,7 +2186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5686907365959242218, guid: 944bae4cc8b2f6a4b8da5f8cd46eb985, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8746739136639176432, guid: 944bae4cc8b2f6a4b8da5f8cd46eb985, type: 3}
       propertyPath: m_RootOrder
@@ -2777,8 +2777,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 645f8cfdeac7e8e4e8c39eb2f0417408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MousePosition: {x: 5.4004817, y: -3.4968069, z: -7.8222656}
-  MousePositionString: (5.40, -3.50)
+  MousePosition: {x: -5.623872, y: 1.1665612, z: -6.991211}
+  MousePositionString: (-5.62, 1.17)
 --- !u!114 &1406528811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2938,7 +2938,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5686907365959242218, guid: 944bae4cc8b2f6a4b8da5f8cd46eb985, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8746739136639176432, guid: 944bae4cc8b2f6a4b8da5f8cd46eb985, type: 3}
       propertyPath: m_RootOrder
@@ -3309,6 +3309,10 @@ PrefabInstance:
     - target: {fileID: 6132269706649913588, guid: ee536ce48d9bc1344a251b3e3be7adb4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7832035096879372646, guid: ee536ce48d9bc1344a251b3e3be7adb4, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9188735510179939049, guid: ee536ce48d9bc1344a251b3e3be7adb4, type: 3}
       propertyPath: m_Name
@@ -3697,7 +3701,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1912136338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4078,7 +4082,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5686907365959242218, guid: 944bae4cc8b2f6a4b8da5f8cd46eb985, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8746739136639176432, guid: 944bae4cc8b2f6a4b8da5f8cd46eb985, type: 3}
       propertyPath: m_RootOrder

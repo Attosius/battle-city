@@ -4,6 +4,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEngine.GraphicsBuffer;
 
 public class Damagable : MonoBehaviour
 {
@@ -73,6 +74,32 @@ public class Damagable : MonoBehaviour
         {
             return;
         }
+
+        //if (target.tag == "Shadow")
+        //{
+        //    return;
+        //}
+        //var toLayer = collision.otherCollider.gameObject.tag;
+        //if (bulletController.ParentTagName == toLayer)
+        //{
+        //    return;
+        //}
+
+        if (bulletController.Parent == collision.otherCollider.gameObject)
+        {
+            // self hit
+            return;
+        }
+
+
+        if (bulletController.Parent.tag == collision.otherCollider.gameObject.tag)
+        {
+            // player hit player, enemy hit enemy
+            return;
+        }
+
+        var currentObject = bulletController.GetCurrentObject();
+
         Debug.Log($"OnCollisionEnter2D from {collision.gameObject.name} into {collision.otherCollider.name}");
         var layerMask = UnityCustomExtensions.GetLayerMaskByName("Wall");
         foreach (var contact in collision.contacts)

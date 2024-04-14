@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3905728617166602314}
   m_Layer: 16
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,3 +149,9 @@ MonoBehaviour:
   speed: 5
   rb2D: {fileID: 0}
   HisDisperse: 0
+  ExplosionPrefab: {fileID: 6568041359222923204, guid: 3d5e860ee2d59ec4284fe7162dbf6481, type: 3}
+  LayerBlocking:
+    serializedVersion: 2
+    m_Bits: 21376
+  ParentTagName: 
+  Parent: {fileID: 0}

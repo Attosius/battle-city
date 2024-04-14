@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
+using Assets.Scripts;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -21,6 +23,7 @@ public class EnemySpawner : MonoBehaviour
     {
         
     }
+    public static int IdGen = 0;
 
     IEnumerator SpawnCoroutine()
     {
@@ -30,6 +33,9 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        Instantiate(enemyPrefab, gameObject.transform.position, Quaternion.identity);
+        var gameobject = Instantiate(enemyPrefab, gameObject.transform.position, Quaternion.identity);
+        var controller = gameobject.GetComponent<EnemyController>();
+        IdGen++;
+        controller.Id = IdGen;
     }
 }

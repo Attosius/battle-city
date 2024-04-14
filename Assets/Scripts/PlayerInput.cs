@@ -26,12 +26,10 @@ namespace Assets.Scripts
         public Coroutine coroutine;
 
 
-        void Start()
+        protected override void Start()
         {
-            animator = GetComponent<Animator>();
+            base.Start();
             spriteRenderer = GetComponent<SpriteRenderer>();
-            boxCollider2D = GetComponent<BoxCollider2D>();
-            animator.StopPlayback();
         }
     
         void Update()
@@ -49,6 +47,9 @@ namespace Assets.Scripts
                 frontCenterTank = start + Quaternion.Euler(0, 0, z) * Vector3.up * MapTankWidth/2;
                 var bulletPrefab = Instantiate(bullet, frontCenterTank, Quaternion.Euler(0, 0, z));
                 var controller = bulletPrefab.GetComponent<BulletController>();
+                //controller.ParentTagName = LayerMask.LayerToName(gameObject.layer);
+                controller.ParentTagName = gameObject.tag;
+                controller.Parent = gameObject;
                 controller.Create(frontCenterTank, Quaternion.Euler(0, 0, z));
             }
         }
@@ -106,7 +107,7 @@ namespace Assets.Scripts
 
 
             ////Physics2D.queriesStartInColliders = false;
-            //var hits = Physics2D.BoxCastAll(boundsTank.center, boundsTank.size, transform.eulerAngles.z, direction, distance, layerBloking);
+            //var hits = Physics2D.BoxCastAll(boundsTank.center, boundsTank.size, transform.eulerAngles.z, direction, distance, LayerBlocking);
             //if (hits.Length > 0)
             //{
             //    foreach (var h in hits)
@@ -177,26 +178,27 @@ namespace Assets.Scripts
             yield return new WaitForSeconds(0.050f);
             IsMove = false;
         }
-        private IEnumerator MoveSmooth(Vector3 end)
-        {
-            var current = transform.position;
-            var remaining = current - end;
-            while (true)
-            {
-                if (remaining.sqrMagnitude < float.Epsilon)
-                {
-                    break;
-                }
-                var newPos = Vector3.MoveTowards(current, end, Time.deltaTime * MaxSpeed);
-                //Debug.Log($"newPos {newPos}");
-                transform.position = newPos;
-                current = transform.position;
-                remaining = current - end;
-                yield return null;
-            }
-            Destroy(_shadowRef);
-            IsMove = false;
-        }
+
+        //private IEnumerator MoveSmooth(Vector3 end)
+        //{
+        //    var current = transform.position;
+        //    var remaining = current - end;
+        //    while (true)
+        //    {
+        //        if (remaining.sqrMagnitude < float.Epsilon)
+        //        {
+        //            break;
+        //        }
+        //        var newPos = Vector3.MoveTowards(current, end, Time.deltaTime * MaxSpeed);
+        //        //Debug.Log($"newPos {newPos}");
+        //        transform.position = newPos;
+        //        current = transform.position;
+        //        remaining = current - end;
+        //        yield return null;
+        //    }
+        //    Destroy(_shadowRef);
+        //    IsMove = false;
+        //}
     
 
 

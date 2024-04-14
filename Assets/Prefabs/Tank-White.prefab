@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 8499900785738036218}
   - component: {fileID: 3898683324345354794}
   - component: {fileID: 1675397462956646764}
+  - component: {fileID: 6208229902374895234}
   m_Layer: 12
   m_Name: Tank-White
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,12 +148,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsMove: 0
   MaxSpeed: 1
-  layerBloking:
+  MapTankWidth: 0.5
+  MovePoint: 0.25
+  LayerBlocking:
     serializedVersion: 2
-    m_Bits: 415616
-  animator: {fileID: 0}
+    m_Bits: 283536
+  ShadowPrefab: {fileID: 364796242915173413, guid: 4685041e34a1d414cad98af1028798e5, type: 3}
   spriteRenderer: {fileID: 0}
   bullet: {fileID: 7561111768611483019, guid: 63bb96ec25c78484c9035e936adf760d, type: 3}
   EstimateMoves: 0
   CurrentDirection: {x: 0, y: 1}
-  ShadowPrefab: {fileID: 364796242915173413, guid: 4685041e34a1d414cad98af1028798e5, type: 3}
+  damagable: {fileID: 0}
+  ExplosionPrefab: {fileID: 6568041359222923204, guid: 3d5e860ee2d59ec4284fe7162dbf6481, type: 3}
+  ReloadDelay: 1
+  CurrentReloadDelay: 0
+  canShoot: 0
+--- !u!114 &6208229902374895234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5686907365959242218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 349b056470ceb1943bfd87c759dd1c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 2
+  Health: 0
+  MaxArmor: 0
+  Armor: 0
+  IsDisperse: 0
+  Death:
+    m_PersistentCalls:
+      m_Calls: []
+  spriteRenderer: {fileID: 0}
+  boxCollider2D: {fileID: 0}
+  sprite: {fileID: 0}

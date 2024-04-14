@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7315083452502698423}
   - component: {fileID: 3014451780828614600}
   m_Layer: 17
-  m_Name: Tank-Enemy
+  m_Name: zzzTank-Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

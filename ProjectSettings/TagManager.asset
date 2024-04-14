@@ -8,23 +8,23 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - 3
   - Water
   - UI
-  - 
+  - 6
   - Wall
   - Stone
   - Outer
-  - Water
+  - 10
   - Ice
   - Tank
   - Bonus
   - Eagle
   - Ground
   - Bullet
-  - Enemy
+  - 17
   - Shadow
-  - 
+  - Effect
   - 
   - 
   - 
@@ -52,6 +52,9 @@ TagManager:
     locked: 0
   - name: OnMapItems
     uniqueID: 808948189
+    locked: 0
+  - name: Effect
+    uniqueID: 1207995647
     locked: 0
   - name: Jungle
     uniqueID: 3203306719

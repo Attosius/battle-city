@@ -44,7 +44,7 @@ public class Damagable : MonoBehaviour
 
         if (Health < 1)
         {
-            Debug.Log($"Death {gameObject.name}");
+            //Debug.Log($"Death {gameObject.name}");
             Death?.Invoke();
             gameObject.SetActive(false);
         }
@@ -70,7 +70,7 @@ public class Damagable : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         var bulletController = collision.gameObject.GetComponent<BulletController>();
-        if (bulletController == null)
+        if (bulletController == null || bulletController.Parent == null)
         {
             return;
         }
@@ -100,7 +100,7 @@ public class Damagable : MonoBehaviour
 
         var currentObject = bulletController.GetCurrentObject();
 
-        Debug.Log($"OnCollisionEnter2D from {collision.gameObject.name} into {collision.otherCollider.name}");
+        //Debug.Log($"OnCollisionEnter2D from {collision.gameObject.name} into {collision.otherCollider.name}");
         var layerMask = UnityCustomExtensions.GetLayerMaskByName("Wall");
         foreach (var contact in collision.contacts)
         {
@@ -150,7 +150,7 @@ public class Damagable : MonoBehaviour
 
     private static void OnHitWall(RaycastHit2D hit1)
     {
-        Debug.Log($"Hit damage {hit1.transform}");
+        //Debug.Log($"Hit damage {hit1.transform}");
         //contactHit = hit1.transform.position;
         var damageable = hit1.transform.gameObject.GetComponent<Damagable>();
         if (damageable != null)

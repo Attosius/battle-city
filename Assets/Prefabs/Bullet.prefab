@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a095a04f84d7141baa66d19cc295e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 2
   rb2D: {fileID: 0}
   HisDisperse: 0
   ExplosionPrefab: {fileID: 6568041359222923204, guid: 3d5e860ee2d59ec4284fe7162dbf6481, type: 3}

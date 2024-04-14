@@ -46,6 +46,9 @@ namespace Assets.Scripts
                 var z = transform.localEulerAngles.z;
                 frontCenterTank = start + Quaternion.Euler(0, 0, z) * Vector3.up * MapTankWidth/2;
                 var bulletPrefab = Instantiate(bullet, frontCenterTank, Quaternion.Euler(0, 0, z));
+                Physics2D.IgnoreCollision(bulletPrefab.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
+
+
                 var controller = bulletPrefab.GetComponent<BulletController>();
                 //controller.ParentTagName = LayerMask.LayerToName(gameObject.layer);
                 controller.ParentTagName = gameObject.tag;

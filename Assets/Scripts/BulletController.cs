@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    public float speed = 5;
+    public float speed = 2;
 
     public Rigidbody2D rb2D;
     public bool HisDisperse = false;
@@ -30,6 +30,8 @@ public class BulletController : MonoBehaviour
     public void Create(Vector3 faceCenterTank, Quaternion rotation)
     {
         rb2D.velocity = transform.up * speed;
+        //rb2D.isKinematic = false;
+        //EditorApplication.isPaused = true;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -51,7 +53,7 @@ public class BulletController : MonoBehaviour
         Debug.Log($"OnCollisionEnter2D from Bullet to {collision.gameObject.name}");
         // todo bullet to bullet with different tags
         var target = collision.collider.gameObject;
-        if (target.tag == "Shadow")
+        if (target.tag == "Shadow" || Parent == null)
         {
             return;
         }
@@ -84,7 +86,7 @@ public class BulletController : MonoBehaviour
         string layerName = LayerMask.LayerToName(collision.gameObject.layer);
         if ((LayerBlocking & (1 << collision.gameObject.layer)) != 0)
         {
-            Debug.Log("LayerMask contains the layer: " + layerName);
+            //Debug.Log("LayerMask contains the layer: " + layerName);
             DisableObject();
             Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
         }
@@ -100,7 +102,7 @@ public class BulletController : MonoBehaviour
     {
         rb2D.velocity = Vector2.zero;
         gameObject.SetActive(false);
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
 
     }
 

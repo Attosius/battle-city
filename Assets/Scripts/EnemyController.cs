@@ -10,6 +10,7 @@ namespace Assets.Scripts
         public SpriteRenderer spriteRenderer;
 
         public GameObject bullet;
+        public GameObject check;
         public int Id;
 
         private UnityEvent OnEndMove = new UnityEvent();
@@ -52,7 +53,7 @@ namespace Assets.Scripts
 
         void Update()
         {
-            if (canShoot && !rotating)
+            if (canShoot )
             {
                 Shoot();
             }
@@ -67,9 +68,13 @@ namespace Assets.Scripts
             var z = transform.localEulerAngles.z;
             var frontCenterTank = start + Quaternion.Euler(0, 0, z) * Vector3.up * MapTankWidth / 2;
             var bulletPrefab = Instantiate(bullet, frontCenterTank, Quaternion.Euler(0, 0, z));
+
+            Physics2D.IgnoreCollision(bulletPrefab.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
+
+
             var controller = bulletPrefab.GetComponent<BulletController>();
             controller.Create(frontCenterTank, Quaternion.Euler(0, 0, z));
-            //controller.ParentTagName = LayerMask.LayerToName(gameObject.layer);
+
             controller.Parent = gameObject;
             StartCoroutine(Reload());
         }
@@ -82,7 +87,7 @@ namespace Assets.Scripts
 
         private IEnumerator OnRotate()
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.5f);
             rotating = false;
         }
         private void HandleMove()

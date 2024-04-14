@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 160659422180787573}
   - component: {fileID: 7765497116571510994}
   m_Layer: 7
-  m_Name: Map-Wall-8mins
+  m_Name: zzzMap-Wall-8mins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

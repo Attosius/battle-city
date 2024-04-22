@@ -34,6 +34,7 @@ namespace Assets.Scripts
     
         void Update()
         {
+            //Debug.Log($"Update");
             HandleMoving();
             HandleFire();
         }
@@ -140,8 +141,8 @@ namespace Assets.Scripts
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.blue;
-            var thickness = 10;
+            //Gizmos.color = Color.blue;
+            //var thickness = 10;
 
             //Handles.DrawBezier(Rect.center, RectTo.center, Rect.center, RectTo.center, Color.blue, null, thickness);
             //Gizmos.DrawLine(Rect.center, RectTo.center);

@@ -8,6 +8,13 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Damagable : MonoBehaviour
 {
+    // Armor
+    // BulletSpeed
+    // BulletMagazine
+    // BulletMagazineReload
+    // BulletIsArmorPiercing
+    // BulletIsJunglePiercing
+    // BulletIsWaterPiercing
 
     public int MaxHealth;
 

@@ -8,11 +8,11 @@ namespace Assets.Scripts
 
         public bool IsMove;
 
-        public float MaxSpeed = 1f;
+        public float MaxSpeed = 0f;
 
-        public float MapTankWidth = 0.5f;
+        public static float MapTankWidth = 0.5f;
 
-        public float MovePoint = 0.5f / 2; // part of move to move smooth 1/8 square
+        public float MovePoint = 0.5f / 2 ; // part of move to move smooth 1/8 square
 
         public LayerMask LayerBlocking;
         public GameObject ShadowPrefab;

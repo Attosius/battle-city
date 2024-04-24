@@ -21,7 +21,7 @@ namespace Assets.Scripts
         protected Animator animator;
         protected GameObject _shadowRef;
 
-        protected virtual void Start()
+        protected virtual void Awake()
         {
             animator = GetComponent<Animator>();
             boxCollider2D = GetComponent<BoxCollider2D>();

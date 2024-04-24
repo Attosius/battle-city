@@ -13,9 +13,8 @@ namespace Assets.Scripts
         public GameObject check;
         public int Id;
 
-        private UnityEvent OnEndMove = new UnityEvent();
         private readonly List<Vector2> _directions = new() { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
-        public int EstimateMoves = 0;
+        public int EstimateMoves;
         public Vector2 CurrentDirection = Vector2.up;
         public Damagable damagable;
         public GameObject ExplosionPrefab;
@@ -24,9 +23,9 @@ namespace Assets.Scripts
         public bool canShoot = true;
         public bool rotating = false;
 
-        protected override void Start()
+        protected override void Awake()
         {
-            base.Start();
+            base.Awake();
             spriteRenderer = GetComponent<SpriteRenderer>();
             damagable = GetComponent<Damagable>();
             damagable.Death.AddListener(OnDeath);
@@ -72,10 +71,10 @@ namespace Assets.Scripts
             Physics2D.IgnoreCollision(bulletPrefab.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
 
 
-            var controller = bulletPrefab.GetComponent<BulletController>();
-            controller.Create(frontCenterTank, Quaternion.Euler(0, 0, z));
+            var bulletController = bulletPrefab.GetComponent<BulletController>();
+            bulletController.MoveBullet();
 
-            controller.Parent = gameObject;
+            bulletController.Parent = gameObject;
             StartCoroutine(Reload());
         }
 

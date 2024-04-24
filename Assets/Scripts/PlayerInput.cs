@@ -1,61 +1,48 @@
 using System.Collections;
+using System.Data;
 using UnityEngine;
 
 namespace Assets.Scripts
 {
     public class PlayerInput : BaseMovingObject
     {
-        public GameObject bullet;
+
+        public BaseFireController BaseFireController;
 
 
 
-        private SpriteRenderer spriteRenderer;
-        public Vector3 centerLeft;
-        public Vector3 centerRight;
-        public Vector3 moveVector;
-        public Vector3 frontCenterTank;
-        public Vector3 nextCenterTank;
-        public Rect nextRect;
-        public Vector2 sphereCenter;
-
-
-        public Rect Rect;
-        public Vector2 CenterRect = Vector2.up;
-        public Rect RectTo;
-        public float Rotation = 0;
-        public Coroutine coroutine;
-
-
-        protected override void Start()
+        protected override void Awake()
         {
-            base.Start();
-            spriteRenderer = GetComponent<SpriteRenderer>();
+            BaseFireController = GetComponent<BaseFireController>();
+            base.Awake();
+
         }
-    
+
+
         void Update()
         {
-            //Debug.Log($"Update");
             HandleMoving();
             HandleFire();
         }
 
         private void HandleFire()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                var start = gameObject.transform.position;
-                var z = transform.localEulerAngles.z;
-                frontCenterTank = start + Quaternion.Euler(0, 0, z) * Vector3.up * MapTankWidth/2;
-                var bulletPrefab = Instantiate(bullet, frontCenterTank, Quaternion.Euler(0, 0, z));
-                Physics2D.IgnoreCollision(bulletPrefab.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
+            BaseFireController.HandleFire();
+            //if (Input.GetKeyDown(KeyCode.Space))
+            //{
+            //    var start = gameObject.transform.position;
+            //    var z = transform.localEulerAngles.z;
+            //    var frontCenterTank = start + Quaternion.Euler(0, 0, z) * Vector3.up * MapTankWidth/2;
+            //    var bulletPrefab = Instantiate(bullet, frontCenterTank, Quaternion.Euler(0, 0, z));
+            //    Physics2D.IgnoreCollision(bulletPrefab.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
 
 
-                var controller = bulletPrefab.GetComponent<BulletController>();
-                //controller.ParentTagName = LayerMask.LayerToName(gameObject.layer);
-                controller.ParentTagName = gameObject.tag;
-                controller.Parent = gameObject;
-                controller.Create(frontCenterTank, Quaternion.Euler(0, 0, z));
-            }
+            //    var controller = bulletPrefab.GetComponent<BulletController>();
+            //    //controller.ParentTagName = LayerMask.LayerToName(gameObject.layer);
+            //    controller.ParentTagName = gameObject.tag;
+            //    controller.Parent = gameObject;
+            //    controller.MoveBullet(frontCenterTank, Quaternion.Euler(0, 0, z));
+            //}
         }
 
         private void HandleMoving()

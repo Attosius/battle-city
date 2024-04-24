@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    public float speed = 2;
+    public float Speed = 2;
 
-    public Rigidbody2D rb2D;
+    public Rigidbody2D Rb2D;
     public bool HisDisperse = false;
 
     public GameObject ExplosionPrefab;
@@ -19,7 +19,7 @@ public class BulletController : MonoBehaviour
 
     void Awake()
     {
-        rb2D = GetComponent<Rigidbody2D>();
+        Rb2D = GetComponent<Rigidbody2D>();
     }
 
     public GameObject GetCurrentObject()
@@ -27,25 +27,13 @@ public class BulletController : MonoBehaviour
         return gameObject;
     }
 
-    public void Create(Vector3 faceCenterTank, Quaternion rotation)
+    public void MoveBullet()
     {
-        rb2D.velocity = transform.up * speed;
-        //rb2D.isKinematic = false;
-        //EditorApplication.isPaused = true;
+        Rb2D.velocity = transform.up * Speed;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log($"Collidered with {collision.name}");
-        //var damageable = collision.GetComponent<Damagable>();
-        //if (damageable != null)
-        //{
-        //    var damage = 1;
-        //    damageable.OnHit(damage);
-        //    if (!damageable.IsDisperse || this.HisDisperse)
-        //    {
-        //        DisableObject();
-        //    }
-        //}
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -57,15 +45,15 @@ public class BulletController : MonoBehaviour
         {
             return;
         }
-        var targetEnemyController = target.GetComponent<EnemyController>();
-        var parentEnemyController = Parent.GetComponent<EnemyController>();
-        if (targetEnemyController != null && parentEnemyController != null)
-        {
-            if (targetEnemyController.Id != parentEnemyController.Id)
-            {
+        //var targetEnemyController = target.GetComponent<EnemyController>();
+        //var parentEnemyController = Parent.GetComponent<EnemyController>();
+        //if (targetEnemyController != null && parentEnemyController != null)
+        //{
+        //    if (targetEnemyController.Id != parentEnemyController.Id)
+        //    {
 
-            }
-        }
+        //    }
+        //}
         if (target == Parent)
         {
             // self hit (ignore collision already check it)
@@ -100,7 +88,7 @@ public class BulletController : MonoBehaviour
 
     private void DisableObject()
     {
-        rb2D.velocity = Vector2.zero;
+        Rb2D.velocity = Vector2.zero;
         gameObject.SetActive(false);
         //Destroy(this.gameObject);
 

@@ -1,22 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CanvasToObject : MonoBehaviour
+namespace Assets.Scripts
 {
-    private RectTransform rectTransform;
-
-
-    // Start is called before the first frame update
-    void Start()
+    public class CanvasToObject : MonoBehaviour
     {
-        rectTransform = GetComponent<RectTransform>();
-    }
+        private RectTransform rectTransform;
 
-    // Update is called once per frame
-    void Update()
-    {
-        var map = gameObject.transform.parent.transform.parent;
-        rectTransform.anchoredPosition = map.localPosition;
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            rectTransform = GetComponent<RectTransform>();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            var map = gameObject.transform.parent.transform.parent;
+            rectTransform.anchoredPosition = map.localPosition;
+        }
     }
 }

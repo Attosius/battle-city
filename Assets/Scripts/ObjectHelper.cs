@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectHelper : MonoBehaviour
+namespace Assets.Scripts
 {
-
-    public void CreateObject()
+    public class ObjectHelper : MonoBehaviour
     {
 
-    }
+        public void CreateObject()
+        {
+
+        }
     
+    }
 }

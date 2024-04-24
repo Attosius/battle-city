@@ -1,10 +1,12 @@
 using UnityEngine;
 
-
-public class Utils : MonoBehaviour
+namespace Assets.Scripts
 {
-    public void DestroyHelper()
+    public class Utils : MonoBehaviour
     {
-        Destroy(gameObject);
+        public void DestroyHelper()
+        {
+            Destroy(gameObject);
+        }
     }
 }

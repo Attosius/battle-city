@@ -24,6 +24,8 @@ namespace Assets.Scripts
         public bool canShoot = true;
         public bool rotating = false;
 
+        public Vector2 StrongMove = Vector2.zero;
+
         protected override void Awake()
         {
             base.Awake();
@@ -120,6 +122,11 @@ namespace Assets.Scripts
 
         private bool MoveRotation(Vector2 direction)
         {
+            if (StrongMove != Vector2.zero)
+            {
+                direction = StrongMove;
+
+            }
 
             var angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
             var rotation = Quaternion.AngleAxis(-angle, Vector3.forward);

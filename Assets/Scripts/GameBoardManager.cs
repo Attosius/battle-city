@@ -1,53 +1,53 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
-public class GameBoardManager : MonoBehaviour
+namespace Assets.Scripts
 {
-    public GameObject mapGround;
-    public GameObject mapOuter;
-    public int mapWidth = 13;
-    void Awake()
+    public class GameBoardManager : MonoBehaviour
     {
-        for (int i = -1; i < mapWidth + 1 ; i++)
+        public GameObject mapGround;
+        public GameObject mapOuter;
+        public int mapWidth = 13;
+        void Awake()
         {
-            for (int j = -1; j < mapWidth + 1; j++)
+            for (int i = -1; i < mapWidth + 1 ; i++)
             {
-                var position = new Vector3(i / 2f, j / 2f, 0);
-                if (i == -1 || i == mapWidth || j == -1 || j == mapWidth)
+                for (int j = -1; j < mapWidth + 1; j++)
                 {
-                    Instantiate(mapOuter, position, Quaternion.identity, transform);
-                    continue;
+                    var position = new Vector3(i / 2f, j / 2f, 0);
+                    if (i == -1 || i == mapWidth || j == -1 || j == mapWidth)
+                    {
+                        Instantiate(mapOuter, position, Quaternion.identity, transform);
+                        continue;
+                    }
+                    Instantiate(mapGround, position, Quaternion.identity, transform);
                 }
-                Instantiate(mapGround, position, Quaternion.identity, transform);
-            }
 
-        }
-        for (float i = 0f; i < mapWidth; i++)
-        {
-            for (float j = 0; j < mapWidth; j++)
+            }
+            for (float i = 0f; i < mapWidth; i++)
             {
-                var position = new Vector3(i / 2f, j / 2f, 0);
-                //GUI.Label(new Rect(position, new Vector2(20, 20)), position.ToString());
-                //Debug.Log(position);
-                //Gizmos.
-                Instantiate(mapGround, position, Quaternion.identity, transform);
+                for (float j = 0; j < mapWidth; j++)
+                {
+                    var position = new Vector3(i / 2f, j / 2f, 0);
+                    //GUI.Label(new Rect(position, new Vector2(20, 20)), position.ToString());
+                    //Debug.Log(position);
+                    //Gizmos.
+                    Instantiate(mapGround, position, Quaternion.identity, transform);
+                }
+
             }
 
         }
-
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
+        // Start is called before the first frame update
+        void Start()
+        {
         
-    }
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
+        // Update is called once per frame
+        void Update()
+        {
         
+        }
     }
 }
 

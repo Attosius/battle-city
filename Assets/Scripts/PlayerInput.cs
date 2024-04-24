@@ -8,7 +8,7 @@ namespace Assets.Scripts
     {
 
         public BaseFireController BaseFireController;
-
+        public static string Tag = "Player";
 
 
         protected override void Awake()
@@ -21,6 +21,7 @@ namespace Assets.Scripts
 
         void Update()
         {
+            
             HandleMoving();
             HandleFire();
         }

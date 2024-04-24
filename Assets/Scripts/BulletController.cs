@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BulletController : MonoBehaviour
 {
@@ -16,9 +17,14 @@ public class BulletController : MonoBehaviour
     public LayerMask LayerBlocking;
     public string ParentTagName;
     public GameObject Parent;
+    public UnityEvent Hit = new UnityEvent();
+    public static int Count = 0;
+    public int Id = 0;
 
     void Awake()
     {
+        Count++;
+        Id = Count;
         Rb2D = GetComponent<Rigidbody2D>();
     }
 
@@ -90,7 +96,8 @@ public class BulletController : MonoBehaviour
     {
         Rb2D.velocity = Vector2.zero;
         gameObject.SetActive(false);
-        //Destroy(this.gameObject);
+        Hit?.Invoke();
+        Destroy(this.gameObject);
 
     }
 

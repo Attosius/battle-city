@@ -8,6 +8,7 @@ namespace Assets.Scripts
     public class EnemyController : BaseMovingObject
     {
         public SpriteRenderer spriteRenderer;
+        public BaseFireController BaseFireController;
 
         public GameObject bullet;
         public GameObject check;
@@ -29,7 +30,8 @@ namespace Assets.Scripts
             spriteRenderer = GetComponent<SpriteRenderer>();
             damagable = GetComponent<Damagable>();
             damagable.Death.AddListener(OnDeath);
-            StartCoroutine(Reload());
+            BaseFireController = GetComponent<BaseFireController>();
+            //StartCoroutine(Reload());
 
         }
 
@@ -52,37 +54,34 @@ namespace Assets.Scripts
 
         void Update()
         {
-            if (canShoot )
-            {
-                Shoot();
-            }
+            BaseFireController.HandleFire();
             HandleMove();
         }
 
-        private void Shoot()
-        {
-            canShoot = false;
+        //private void Shoot()
+        //{
+        //    canShoot = false;
 
-            var start = gameObject.transform.position;
-            var z = transform.localEulerAngles.z;
-            var frontCenterTank = start + Quaternion.Euler(0, 0, z) * Vector3.up * MapTankWidth / 2;
-            var bulletPrefab = Instantiate(bullet, frontCenterTank, Quaternion.Euler(0, 0, z));
+        //    var start = gameObject.transform.position;
+        //    var z = transform.localEulerAngles.z;
+        //    var frontCenterTank = start + Quaternion.Euler(0, 0, z) * Vector3.up * MapTankWidth / 2;
+        //    var bulletPrefab = Instantiate(bullet, frontCenterTank, Quaternion.Euler(0, 0, z));
 
-            Physics2D.IgnoreCollision(bulletPrefab.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
+        //    Physics2D.IgnoreCollision(bulletPrefab.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
 
 
-            var bulletController = bulletPrefab.GetComponent<BulletController>();
-            bulletController.MoveBullet();
+        //    var bulletController = bulletPrefab.GetComponent<BulletController>();
+        //    bulletController.MoveBullet();
 
-            bulletController.Parent = gameObject;
-            StartCoroutine(Reload());
-        }
+        //    bulletController.Parent = gameObject;
+        //    StartCoroutine(Reload());
+        //}
 
-        private IEnumerator Reload()
-        {
-            yield return new WaitForSeconds(ReloadDelay);
-            canShoot = true;
-        }
+        //private IEnumerator Reload()
+        //{
+        //    yield return new WaitForSeconds(ReloadDelay);
+        //    canShoot = true;
+        //}
 
         private IEnumerator OnRotate()
         {

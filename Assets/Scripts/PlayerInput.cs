@@ -1,6 +1,10 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Data;
+using Assets.Scripts.TanksData;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 namespace Assets.Scripts
 {
@@ -15,6 +19,16 @@ namespace Assets.Scripts
         {
             BaseFireController = GetComponent<BaseFireController>();
             base.Awake();
+
+            List<TankPropertiesData> characterList = new List<TankPropertiesData>();
+            string[] assetNames = AssetDatabase.FindAssets("*", new[] { "Assets/Prefabs/PropsData" });
+            foreach (string SOName in assetNames)
+            {
+                var SOpath = AssetDatabase.GUIDToAssetPath(SOName);
+                var character = AssetDatabase.LoadAssetAtPath<TankPropertiesData>(SOpath);
+                characterList.Add(character);
+            }
+
 
         }
 

@@ -1,4 +1,5 @@
 using System.Collections;
+using Assets.Scripts.TanksData;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -6,9 +7,11 @@ namespace Assets.Scripts
     public class BaseMovingObject : MonoBehaviour
     {
 
+        public TankPropertiesData TankProperties;
+
         public bool IsMove;
 
-        public float MaxSpeed = 0f;
+        public float MaxSpeed = 1f;
 
         public static float MapTankWidth = 0.5f;
 

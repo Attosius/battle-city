@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Assets.Scripts.TanksData;
 using UnityEditor;
 using UnityEngine;
@@ -17,19 +18,20 @@ namespace Assets.Scripts
 
         protected override void Awake()
         {
-            BaseFireController = GetComponent<BaseFireController>();
-            base.Awake();
-
-            List<TankPropertiesData> characterList = new List<TankPropertiesData>();
-            string[] assetNames = AssetDatabase.FindAssets("*", new[] { "Assets/Prefabs/PropsData" });
-            foreach (string SOName in assetNames)
+            if (TankProperties == null)
             {
-                var SOpath = AssetDatabase.GUIDToAssetPath(SOName);
-                var character = AssetDatabase.LoadAssetAtPath<TankPropertiesData>(SOpath);
-                characterList.Add(character);
+                TankProperties = DataManager.Instance.PlayerLvl1;
             }
 
+            BaseFireController = GetComponent<BaseFireController>();
+            BaseFireController.TurretProperties = TankProperties.TurretPropertiesData;
+            base.Awake();
 
+            
+        }
+
+        public void Start()
+        {
         }
 
 

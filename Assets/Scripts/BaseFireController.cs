@@ -1,3 +1,4 @@
+using Assets.Scripts.TanksData;
 using System.Collections;
 using UnityEngine;
 
@@ -5,11 +6,12 @@ namespace Assets.Scripts
 {
     public class BaseFireController : MonoBehaviour
     {
+        public TurretPropertiesData TurretProperties;
         public GameObject bullet;
-        public float ReloadDelay = 1.5f; //sec
-        public float ReloadDelayAfterHitPlayerSec = 0.25f;
-        public float ReloadDelayAfterHitEnemySec = 0.5f;
-        public float ReloadDelayAfterHitBulletSec = 0.05f;
+        //public float ReloadDelay = 1.5f; //sec
+        //public float ReloadDelayAfterHitPlayerSec = 0.25f;
+        //public float ReloadDelayAfterHitEnemySec = 0.5f;
+        //public float ReloadDelayAfterHitBulletSec = 0.05f;
 
         public float CurrentReloadDelay = 0f;
         public bool CanShoot = false;
@@ -19,8 +21,13 @@ namespace Assets.Scripts
 
         public void Awake()
         {
-            CurrentReloadDelay = ReloadDelay;
+            CurrentReloadDelay = TurretProperties.ReloadDelay;
             IsPlayer = gameObject.CompareTag(PlayerInput.Tag);
+        }
+        public void Start()
+        {
+            //CurrentReloadDelay = TurretProperties.ReloadDelay;
+            //IsPlayer = gameObject.CompareTag(PlayerInput.Tag);
         }
 
         public void Update()
@@ -44,7 +51,7 @@ namespace Assets.Scripts
             if (IsPlayer && Input.GetKeyDown(KeyCode.Space) || !IsPlayer)
             {
                 CanShoot = false;
-                CurrentReloadDelay = ReloadDelay;
+                CurrentReloadDelay = TurretProperties.ReloadDelay;
                 if (_lastBulletController != null)
                 {
                     _lastBulletController.Hit.RemoveAllListeners();
@@ -69,15 +76,15 @@ namespace Assets.Scripts
             controller.Hit.RemoveAllListeners();
             if (collisionTag == BulletController.Tag)
             {
-                if (CurrentReloadDelay > ReloadDelayAfterHitBulletSec)
+                if (CurrentReloadDelay > TurretProperties.ReloadDelayAfterHitBulletSec)
                 {
-                    CurrentReloadDelay = ReloadDelayAfterHitBulletSec;
+                    CurrentReloadDelay = TurretProperties.ReloadDelayAfterHitBulletSec;
                 }
                 return;
             }
 
             
-            var decreasedDelay = IsPlayer ? ReloadDelayAfterHitPlayerSec : ReloadDelayAfterHitEnemySec;
+            var decreasedDelay = IsPlayer ? TurretProperties.ReloadDelayAfterHitPlayerSec : TurretProperties.ReloadDelayAfterHitEnemySec;
             if (CurrentReloadDelay > decreasedDelay)
             {
                 CurrentReloadDelay = decreasedDelay;
@@ -88,7 +95,7 @@ namespace Assets.Scripts
         {
             var start = gameObject.transform.position;
             var z = transform.localEulerAngles.z;
-            var frontCenterTank = start + Quaternion.Euler(0, 0, z) * Vector3.up * BaseMovingObject.MapTankWidth / 2;
+            var frontCenterTank = start + Quaternion.Euler(0, 0, z) * Vector3.up * TankPropertiesData.MapTankWidth / 2;
             var bulletPrefab = Instantiate(bullet, frontCenterTank, Quaternion.Euler(0, 0, z));
             return bulletPrefab;
         }

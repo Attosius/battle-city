@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0b0c706bee6f5f4a9fe019e84cf5ed5, type: 3}
-  m_Name: PlayerLvl1_TankProperties
-  m_EditorClassIdentifier: 
-  DataOwner: PlayerLvl1
-  TurretPropertiesData: {fileID: 11400000, guid: 215b46df6e561dd44ad05935310917bf, type: 2}
+  m_Name: EnemyLvl1_TankProperties
+  m_EditorClassIdentifier: Assembly-CSharp:Assets.Scripts:TankPropertiesData
+  DataOwner: EnemyLvl1
+  TurretPropertiesData: {fileID: 11400000, guid: 84a45431e6227464d88491014cb04cc1, type: 2}
   MaxSpeed: 1
   MovePoint: 0.25

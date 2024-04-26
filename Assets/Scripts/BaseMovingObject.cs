@@ -11,11 +11,11 @@ namespace Assets.Scripts
 
         public bool IsMove;
 
-        public float MaxSpeed = 1f;
+        //public float MaxSpeed = 1f;
 
-        public static float MapTankWidth = 0.5f;
+        //public static float MapTankWidth = 0.5f;
 
-        public float MovePoint = 0.5f / 2 ; // part of move to move smooth 1/8 square
+        //public float MovePoint = 0.5f / 2 ; // part of move to move smooth 1/8 square
 
         public LayerMask LayerBlocking;
         public GameObject ShadowPrefab;
@@ -38,7 +38,7 @@ namespace Assets.Scripts
             var centerTank = transform.position;
             var boundsTank = boxCollider2D.bounds;
             var direction = Quaternion.Euler(0, 0, transform.localEulerAngles.z) * Vector3.up;
-            var distance = MovePoint;
+            var distance = TankProperties.MovePoint;
             var end = centerTank + direction.normalized * distance;
 
 
@@ -63,7 +63,7 @@ namespace Assets.Scripts
                 {
                     break;
                 }
-                var newPos = Vector3.MoveTowards(current, end, Time.deltaTime * MaxSpeed);
+                var newPos = Vector3.MoveTowards(current, end, Time.deltaTime * TankProperties.MaxSpeed);
                 transform.position = newPos;
                 current = transform.position;
                 remaining = current - end;

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Assets.Scripts.TanksData;
 using UnityEditor;
 using UnityEngine;
 
@@ -19,7 +20,7 @@ namespace Assets.Scripts
             {
                 for (int j = -1; j < mapWidth + 1; j++)
                 {
-                    var position = new Vector2(i / 2f - BaseMovingObject.MapTankWidth / 2 , j / 2f - BaseMovingObject.MapTankWidth / 2);
+                    var position = new Vector2(i / 2f - TankPropertiesData.MapTankWidth / 2 , j / 2f - TankPropertiesData.MapTankWidth / 2);
                     mapObjects.Add(position);
                 
                     //Instantiate(mapGround, position, Quaternion.identity, transform);

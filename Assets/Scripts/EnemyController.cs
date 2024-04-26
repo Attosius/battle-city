@@ -1,3 +1,4 @@
+using Assets.Scripts.TanksData;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,7 +33,14 @@ namespace Assets.Scripts
             spriteRenderer = GetComponent<SpriteRenderer>();
             damagable = GetComponent<Damagable>();
             damagable.Death.AddListener(OnDeath);
+
+            if (TankProperties == null)
+            {
+                TankProperties = DataManager.Instance.EnemyLvl1;
+            }
             BaseFireController = GetComponent<BaseFireController>();
+            BaseFireController.TurretProperties = TankProperties.TurretPropertiesData;
+
             //StartCoroutine(Reload());
 
         }

@@ -3,8 +3,20 @@ using UnityEngine;
 namespace Assets.Scripts.TanksData
 {
     [CreateAssetMenu(fileName = "NewTankProperties", menuName = "Data/TankPropertiesData")]
-    public class TankPropertiesData : ScriptableObject
+    public class TankPropertiesData: ScriptableObject
     {
+        public static string PlayerLvl1 = "PlayerLvl1";
+        public static string PlayerLvl2 = "PlayerLvl2";
+        public static string PlayerLvl3 = "PlayerLvl3";
+        public static string PlayerLvl4 = "PlayerLvl4";
+
+        public static string EnemyLvl1 = "EnemyLvl1";
+        public static string EnemyLvl2Fast = "EnemyLvl2Fast";
+        public static string EnemyLvl3LightSmart = "EnemyLvl3LightSmart";
+        public static string EnemyLvl4Heavy = "EnemyLvl4Heavy";
+
+        public string DataOwner = "";
+
         public TurretPropertiesData TurretPropertiesData;
 
         public float MaxSpeed = 1f;

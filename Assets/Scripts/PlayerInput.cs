@@ -18,16 +18,20 @@ namespace Assets.Scripts
 
         protected override void Awake()
         {
+            BaseFireController = GetComponent<BaseFireController>();
             if (TankProperties == null)
             {
-                TankProperties = DataManager.Instance.PlayerLvl1;
+                SetPropsData(DataManager.Instance.PlayerLvl1);
             }
 
-            BaseFireController = GetComponent<BaseFireController>();
-            BaseFireController.TurretProperties = TankProperties.TurretPropertiesData;
+            //BaseFireController.TurretProperties = TankProperties.TurretPropertiesData;
             base.Awake();
+        }
 
-            
+        public override void SetPropsData(TankPropertiesData tankProperties)
+        {
+            base.SetPropsData(tankProperties);
+            BaseFireController.SetPropsData(TankProperties.TurretPropertiesData);
         }
 
         public void Start()
@@ -71,10 +75,11 @@ namespace Assets.Scripts
 
             var x = (int)Input.GetAxisRaw("Horizontal");
             var y = (int)Input.GetAxisRaw("Vertical");
+            
+            //Debug.Log($"11 {transform.rotation}");
             var wasRotation = MoveRotation(x, y);
             if (!wasRotation)
             {
-
                 MovePosition(x, y);
             }
         }
@@ -168,9 +173,11 @@ namespace Assets.Scripts
                 y = 0;
             }
             var angle = Mathf.Atan2(x, y) * Mathf.Rad2Deg;
-            //Debug.Log($"Quaternion.AngleAxis(-angle, Vector3.forward);: {Quaternion.AngleAxis(-angle, Vector3.forward);} transform.rotation: {transform.rotation}");
             var rotation = Quaternion.AngleAxis(-angle, Vector3.forward);
-            if (transform.rotation == rotation)
+            //if (transform.rotation == rotation)
+            //Debug.Log($"{transform.rotation.eulerAngles}  {rotation.eulerAngles}");
+
+            if (transform.rotation.eulerAngles == rotation.eulerAngles) // quaternion (0,0,0,1) and (0,0,0,-1) check
             {
                 return false;
             }

@@ -34,17 +34,24 @@ namespace Assets.Scripts
             damagable = GetComponent<Damagable>();
             damagable.Death.AddListener(OnDeath);
 
+            BaseFireController = GetComponent<BaseFireController>();
             if (TankProperties == null)
             {
-                TankProperties = DataManager.Instance.EnemyLvl1;
+                //TankProperties = DataManager.Instance.EnemyLvl1;
+                SetPropsData(DataManager.Instance.EnemyLvl1);
             }
-            BaseFireController = GetComponent<BaseFireController>();
-            BaseFireController.TurretProperties = TankProperties.TurretPropertiesData;
+            //BaseFireController.TurretProperties = TankProperties.TurretPropertiesData;
+            //BaseFireController.SetPropsData(TankProperties.TurretPropertiesData);
 
             //StartCoroutine(Reload());
 
         }
 
+        public override void SetPropsData(TankPropertiesData tankProperties)
+        {
+            base.SetPropsData(tankProperties);
+            BaseFireController.SetPropsData(TankProperties.TurretPropertiesData);
+        }
         private void OnDeath()
         {
             Destroy(_shadowRef);

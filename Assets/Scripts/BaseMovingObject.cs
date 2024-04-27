@@ -31,6 +31,11 @@ namespace Assets.Scripts
             animator.StopPlayback();
         }
 
+        public virtual void SetPropsData(TankPropertiesData tankProperties)
+        {
+            TankProperties = tankProperties;
+        }
+
         public void MovePosition()
         {
 

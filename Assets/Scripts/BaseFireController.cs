@@ -21,13 +21,8 @@ namespace Assets.Scripts
 
         public void Awake()
         {
-            CurrentReloadDelay = TurretProperties.ReloadDelay;
-            IsPlayer = gameObject.CompareTag(PlayerInput.Tag);
-        }
-        public void Start()
-        {
             //CurrentReloadDelay = TurretProperties.ReloadDelay;
-            //IsPlayer = gameObject.CompareTag(PlayerInput.Tag);
+            IsPlayer = gameObject.CompareTag(PlayerInput.Tag);
         }
 
         public void Update()
@@ -40,6 +35,12 @@ namespace Assets.Scripts
                     CanShoot = true;
                 }
             }
+        }
+
+        public void SetPropsData(TurretPropertiesData turretProperties)
+        {
+            TurretProperties = turretProperties;
+            CurrentReloadDelay = TurretProperties.ReloadDelay;
         }
 
         public void HandleFire()
@@ -72,7 +73,6 @@ namespace Assets.Scripts
 
         private void OnBulletHit(BulletController controller, string collisionTag)
         {
-            Debug.Log($"From {controller.Parent.tag} to = {collisionTag}");
             controller.Hit.RemoveAllListeners();
             if (collisionTag == BulletController.Tag)
             {

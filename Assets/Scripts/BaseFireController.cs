@@ -65,7 +65,7 @@ namespace Assets.Scripts
                 newBulletController.Hit.AddListener(collisionTag => { OnBulletHit(newBulletController, collisionTag); });
                 newBulletController.ParentTagName = gameObject.tag;
                 newBulletController.Parent = gameObject;
-                newBulletController.MoveBullet();
+                newBulletController.MoveBullet(TurretProperties.BulletSpeed);
                 _lastBulletController = newBulletController;
             }
         }

@@ -10,6 +10,7 @@ namespace Assets.Scripts
     {
         public SpriteRenderer spriteRenderer;
         public BaseFireController BaseFireController;
+        public const string Tag = "Enemy";
 
         public GameObject bullet;
         public GameObject check;

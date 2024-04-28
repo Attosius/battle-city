@@ -5,7 +5,7 @@ namespace Assets.Scripts
 {
     public class BulletController : MonoBehaviour
     {
-        public float Speed = 2;
+        //public float Speed = 2;
 
         public Rigidbody2D Rb2D;
         public bool HisDisperse = false;
@@ -31,9 +31,9 @@ namespace Assets.Scripts
             return gameObject;
         }
 
-        public void MoveBullet()
+        public void MoveBullet(float speed)
         {
-            Rb2D.velocity = transform.up * Speed;
+            Rb2D.velocity = transform.up * speed;
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {

@@ -5,10 +5,10 @@ namespace Assets.Scripts.TanksData
     [CreateAssetMenu(fileName = "NewTankProperties", menuName = "Data/TankPropertiesData")]
     public class TankPropertiesData: ScriptableObject
     {
-        public static string PlayerLvl1 = "PlayerLvl1";
-        public static string PlayerLvl2 = "PlayerLvl2";
-        public static string PlayerLvl3 = "PlayerLvl3";
-        public static string PlayerLvl4 = "PlayerLvl4";
+        public const string PlayerLvl1 = "PlayerLvl1";
+        public const string PlayerLvl2 = "PlayerLvl2";
+        public const string PlayerLvl3 = "PlayerLvl3";
+        public const string PlayerLvl4 = "PlayerLvl4";
 
         public static string EnemyLvl1 = "EnemyLvl1";
         public static string EnemyLvl2Fast = "EnemyLvl2Fast";

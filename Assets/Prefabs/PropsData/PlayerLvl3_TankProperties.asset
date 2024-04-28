@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp:Assets.Scripts:TankPropertiesData
   DataOwner: PlayerLvl3
   TurretPropertiesData: {fileID: 11400000, guid: d95376877d057ce46a285499c407f2c3, type: 2}
-  MaxSpeed: 5
+  MaxSpeed: 2
   MovePoint: 0.25

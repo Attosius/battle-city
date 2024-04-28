@@ -13,7 +13,7 @@ namespace Assets.Scripts
     {
 
         public BaseFireController BaseFireController;
-        public static string Tag = "Player";
+        public const string Tag = "Player";
 
 
         protected override void Awake()

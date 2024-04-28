@@ -51,7 +51,15 @@ namespace Assets.Scripts
 
             if (hits.Length > 1)
             {
-                return;
+                foreach (var raycastHit2D in hits)
+                {
+                    var overlapBox = raycastHit2D.collider.bounds.Intersects(boundsTank); // if spawn together, not detect each other
+                    if (overlapBox)
+                    {
+                        continue;
+                    }
+                    return;
+                }
             }
             IsMove = true;
             _shadowRef = Instantiate(ShadowPrefab, end, this.transform.rotation);

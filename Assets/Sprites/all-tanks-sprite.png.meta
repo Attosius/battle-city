@@ -3881,7 +3881,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: all-tanks-sprite_191
+      name: all-tanks--bonus-eagleStone
       rect:
         serializedVersion: 2
         x: 256
@@ -3902,7 +3902,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: all-tanks-sprite_192
+      name: all-tanks--bonus-time
       rect:
         serializedVersion: 2
         x: 272
@@ -3923,15 +3923,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: all-tanks-sprite_193
+      name: all-tanks--bonus-shovel
       rect:
         serializedVersion: 2
         x: 288
         y: 128
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.4862938, y: 0.50000095}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -3944,7 +3944,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: all-tanks-sprite_194
+      name: all-tanks--bonus-star
       rect:
         serializedVersion: 2
         x: 304
@@ -3965,7 +3965,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: all-tanks-sprite_195
+      name: all-tanks--bonus-mine
       rect:
         serializedVersion: 2
         x: 320
@@ -3986,7 +3986,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: all-tanks-sprite_196
+      name: all-tanks--bonus-tank
       rect:
         serializedVersion: 2
         x: 336
@@ -4007,7 +4007,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: all-tanks-sprite_197
+      name: all-tanks--bonus-gun
       rect:
         serializedVersion: 2
         x: 352
@@ -7761,7 +7761,6 @@ TextureImporter:
       all-tanks-sprite_248: 1311286278
       all-tanks-sprite_109: 1777910220
       all-tanks-sprite_276: -784957667
-      all-tanks-sprite_194: 401292116
       all-tanks--ground: 1127285838
       all-tanks-sprite_34: 435906075
       all-tanks-sprite_173: -1720857209
@@ -7796,6 +7795,7 @@ TextureImporter:
       all-tanks-sprite_304: -1617177947
       all-tanks-sprite_204: -70725280
       all-tanks-sprite_366: -705762994
+      all-tanks--bonus-tank: 2069764377
       all-tanks--explosionBig2: 2061909021
       all-tanks-sprite_132: 1551583132
       all-tanks-sprite_169: 1909718011
@@ -7825,6 +7825,7 @@ TextureImporter:
       all-tanks-sprite_150: -1714047310
       all-tanks-sprite_214: -411375829
       all-tanks--wall-001: 26618379
+      all-tanks--bonus-eagleStone: 545790373
       all-tanks-sprite_102: -1759629777
       all-tanks-sprite_314: 595965232
       all-tanks-sprite_151: -343345082
@@ -7835,9 +7836,11 @@ TextureImporter:
       all-tanks-sprite_377: -263452132
       all-tanks-sprite_41: 1109561036
       all-tanks--yellow_4lvl_2: 334659481
+      all-tanks--bonus-shovel: 1999480261
       all-tanks--water2: 503459089
       all-tanks-sprite_127: 1406538865
       all-tanks-sprite_307: -1637841404
+      all-tanks--bonus-mine: -669364518
       all-tanks--w5: 850573229
       all-tanks-sprite_298: 529255289
       all-tanks-sprite_103: 1126508873
@@ -7855,7 +7858,7 @@ TextureImporter:
       all-tanks-sprite_352: 1125792647
       all-tanks-sprite_24: 1671620730
       all-tanks-sprite_346: -1345346270
-      all-tanks-sprite_193: 1999480261
+      all-tanks--bonus-gun: 550170042
       all-tanks-sprite_357: -99177965
       all-tanks-sprite_15: 1433221786
       all-tanks-sprite_339: 1381471162
@@ -7898,7 +7901,6 @@ TextureImporter:
       all-tanks-sprite_58: 335652762
       all-tanks-sprite_74: 125351276
       all-tanks-sprite_18: -1077127965
-      all-tanks-sprite_197: 550170042
       all-tanks-sprite_167: -1597344561
       all-tanks-sprite_344: -1695485604
       all-tanks-sprite_384: 1491303233
@@ -7949,7 +7951,6 @@ TextureImporter:
       all-tanks-sprite_331: 1687663792
       all-tanks-sprite_163: -1723103659
       all-tanks-sprite_148: 54735851
-      all-tanks-sprite_195: -669364518
       all-tanks-sprite_313: -1303143433
       all-tanks-sprite_171: 1671601440
       all-tanks-sprite_126: -649618236
@@ -7990,7 +7991,6 @@ TextureImporter:
       all-tanks--water1: 664886457
       all-tanks--yellow_1lvl_2: 373978137
       all-tanks-sprite_255: 1856854662
-      all-tanks-sprite_196: 2069764377
       all-tanks-sprite_135: -956511354
       all-tanks-sprite_287: 2022051926
       all-tanks-sprite_100: 1278512920
@@ -8034,6 +8034,7 @@ TextureImporter:
       all-tanks-sprite_229: -130370663
       all-tanks-sprite_274: 1959167516
       all-tanks-sprite_2: -1151398912
+      all-tanks--bonus-time: -803064402
       all-tanks-sprite_136: -935736557
       all-tanks-sprite_85: -1054911619
       all-tanks-sprite_64: 1550113991
@@ -8045,7 +8046,6 @@ TextureImporter:
       all-tanks--yellow_2lvl_1: 1705824924
       all-tanks-sprite_270: 31024641
       all-tanks-sprite_359: -940979093
-      all-tanks-sprite_191: 545790373
       all-tanks-sprite_275: 76232942
       all-tanks-sprite_180: -405713771
       all-tanks-sprite_105: 1242776217
@@ -8065,7 +8065,6 @@ TextureImporter:
       all-tanks-sprite_356: 993185654
       all-tanks-sprite_177: 1088047523
       all-tanks-sprite_324: -876778672
-      all-tanks-sprite_192: -803064402
       all-tanks-sprite_236: -1632136855
       all-tanks-sprite_231: 1834996817
       all-tanks-sprite_303: -188232835
@@ -8084,6 +8083,7 @@ TextureImporter:
       all-tanks-sprite_143: -70353360
       all-tanks-sprite_372: 1571728997
       all-tanks-sprite_259: 461983443
+      all-tanks--bonus-star: 401292116
       all-tanks-sprite_362: -346219638
       all-tanks-sprite_125: -1833687609
       all-tanks-sprite_12: 1260370345

@@ -21,7 +21,7 @@ namespace Assets.Scripts
         public GameObject ShadowPrefab;
 
         protected BoxCollider2D boxCollider2D;
-        protected Animator animator;
+        public Animator animator;
         protected GameObject _shadowRef;
 
         protected virtual void Awake()

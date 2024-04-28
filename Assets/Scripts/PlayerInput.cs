@@ -18,6 +18,7 @@ namespace Assets.Scripts
 
         protected override void Awake()
         {
+            base.Awake();
             BaseFireController = GetComponent<BaseFireController>();
             if (TankProperties == null)
             {
@@ -25,13 +26,13 @@ namespace Assets.Scripts
             }
 
             //BaseFireController.TurretProperties = TankProperties.TurretPropertiesData;
-            base.Awake();
         }
 
         public override void SetPropsData(TankPropertiesData tankProperties)
         {
             base.SetPropsData(tankProperties);
             BaseFireController.SetPropsData(TankProperties.TurretPropertiesData);
+           
         }
 
         public void Start()
